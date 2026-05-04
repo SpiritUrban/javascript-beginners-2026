@@ -4,6 +4,9 @@ export type LessonSection = {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
+  codeTitle?: string;
+  code?: string;
+  note?: string;
 };
 
 export type LessonUseCase = {
@@ -143,17 +146,110 @@ export const lessons: Lesson[] = [
     },
   },
   {
-    slug: "conditions-and-logic",
-    level: "Core",
-    duration: "16 min",
-    title: "Conditions and Logic",
+    slug: "setup-vscode-live-server",
+    level: "Start",
+    duration: "15 min",
+    title: "Як підготувати середовище (VS Code + Live Server)",
     description:
-      "Умови, порівняння і логічні оператори для керування потоком програми.",
+      "Другий урок про налаштування простого і професійного середовища для практики JavaScript протягом усього курсу.",
     bullets: [
-      "if / else та ternary",
-      "Truthy / falsy значення",
-      "Комбінування умов через && та ||",
+      "Встановлення VS Code і Live Server",
+      "Створення робочої папки та першого HTML-файлу",
+      "Перевірка, що автоперезавантаження і JavaScript працюють",
     ],
+    content: {
+      goal:
+        "Налаштувати професійне, але просте робоче середовище, в якому ми будемо працювати весь курс.",
+      setup: [
+        "Visual Studio Code (VS Code) — найкращий безкоштовний редактор коду.",
+        "Розширення Live Server — щоб бачити зміни в браузері автоматично.",
+        "Google Chrome — рекомендований браузер для курсу.",
+      ],
+      sections: [
+        {
+          title: "Крок 1: Встановлення VS Code",
+          bullets: [
+            "Перейдіть на офіційний сайт: `code.visualstudio.com`.",
+            "Натисніть велику кнопку Download для Windows, macOS або Linux.",
+            "Встановіть програму як звичайну desktop-програму.",
+            "Після запуску, якщо потрібно, увімкніть українську мову: `Ctrl + Shift + P` → `Configure Display Language` → `Ukrainian`.",
+          ],
+        },
+        {
+          title: "Крок 2: Встановлення розширення Live Server",
+          bullets: [
+            "Відкрийте VS Code.",
+            "Натисніть іконку Extensions у лівій панелі.",
+            "У пошуку введіть: `Live Server`.",
+            "Встановіть розширення від Ritwick Dey.",
+            "Після встановлення перезапустіть VS Code.",
+          ],
+        },
+        {
+          title: "Крок 3: Створюємо робочу папку",
+          bullets: [
+            "На робочому столі створіть папку `javascript-course`.",
+            "У VS Code відкрийте її через `File → Open Folder`.",
+            "Саме в цій папці ми будемо створювати перші файли і вправи курсу.",
+          ],
+        },
+        {
+          title: "Крок 4: Перший файл і запуск Live Server",
+          paragraphs: [
+            "У VS Code натисніть `New File` і назвіть файл `index.html`. Вставте в нього код нижче.",
+            "Після цього клікніть правою кнопкою миші по `index.html` і виберіть `Open with Live Server`.",
+            "Браузер має автоматично відкритися і показати вашу сторінку.",
+          ],
+          codeTitle: "index.html",
+          code: `<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2 - Перший запуск</title>
+</head>
+<body>
+    <h1>🎉 Вітаю! Середовище готове!</h1>
+    <p>Якщо ти бачиш цей текст — все працює правильно.</p>
+
+    <script>
+        console.log("JavaScript працює! 🚀");
+    </script>
+</body>
+</html>`,
+        },
+        {
+          title: "Перевірка, що все працює",
+          bullets: [
+            "Змініть текст у `<h1>` і збережіть файл через `Ctrl + S`.",
+            "Сторінка в браузері повинна оновитися автоматично.",
+            "Відкрийте консоль через `F12 → Console` і перевірте, чи є повідомлення `JavaScript працює! 🚀`.",
+          ],
+        },
+        {
+          title: "Корисні налаштування VS Code",
+          bullets: [
+            "`Auto Save: onFocusChange`.",
+            "`Format On Save` — увімкнути.",
+            "`Word Wrap: on`.",
+          ],
+          note:
+            "Ці налаштування не є обов'язковими, але вони зроблять роботу значно комфортнішою вже з перших уроків.",
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Налаштуйте VS Code і Live Server, якщо ще не зробили цього.",
+          "Створіть файл `index.html` у папці `javascript-course`.",
+          "Запустіть його через Live Server.",
+          "Змініть заголовок і текст на сторінці та перевірте автоновлення.",
+          "Напишіть у чаті: `Урок 2 пройдено`.",
+        ],
+        note:
+          "Мета домашнього завдання не просто відкрити сторінку, а переконатися, що вся зв'язка VS Code + Live Server + браузер працює стабільно.",
+      },
+    },
   },
   {
     slug: "functions-and-scope",

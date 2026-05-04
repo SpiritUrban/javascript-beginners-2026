@@ -80,6 +80,19 @@ export function LessonPage() {
                     ))}
                   </div>
                 ) : null}
+                {section.code ? (
+                  <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#0a1120]">
+                    <div className="border-b border-white/10 px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-slate-400">
+                      {section.codeTitle ?? "code"}
+                    </div>
+                    <pre className="overflow-x-auto p-5 text-sm leading-7 text-slate-200">
+                      <code>{section.code}</code>
+                    </pre>
+                  </div>
+                ) : null}
+                {section.note ? (
+                  <p className="max-w-4xl leading-8 text-muted-foreground">{section.note}</p>
+                ) : null}
               </section>
             ))}
           </div>
