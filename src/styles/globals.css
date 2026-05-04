@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --background: 224 29% 10%;
+    --foreground: 210 33% 96%;
+    --card: 223 23% 13%;
+    --card-foreground: 210 33% 96%;
+    --border: 218 18% 22%;
+    --input: 218 18% 22%;
+    --primary: 169 100% 68%;
+    --primary-foreground: 220 26% 10%;
+    --secondary: 217 20% 18%;
+    --secondary-foreground: 214 32% 92%;
+    --muted: 219 18% 16%;
+    --muted-foreground: 215 17% 70%;
+    --accent: 200 88% 64%;
+    --accent-foreground: 220 26% 10%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground font-sans;
+    background-image:
+      radial-gradient(circle at top, rgba(84, 208, 255, 0.18), transparent 28%),
+      radial-gradient(circle at 20% 20%, rgba(86, 255, 211, 0.12), transparent 24%),
+      linear-gradient(180deg, #0d1322 0%, #0a0f1a 100%);
+  }
+
+  ::selection {
+    background: rgba(112, 255, 221, 0.28);
+    color: white;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .surface {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+
+  .developer-grid {
+    background-image: theme("backgroundImage.grid-fade");
+    background-size: 36px 36px;
+  }
+}
