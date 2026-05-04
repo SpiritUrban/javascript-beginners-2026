@@ -48,6 +48,30 @@ export function LessonPage() {
           {lesson.description}
         </p>
 
+        {lesson.content?.video ? (
+          <section className="mt-8 space-y-4">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-2xl font-semibold">{lesson.content.video.title}</h2>
+              <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                YouTube
+              </span>
+            </div>
+            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#09101d] shadow-glow">
+              <div className="aspect-video">
+                <iframe
+                  className="h-full w-full"
+                  src={lesson.content.video.url}
+                  title={lesson.content.video.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         {lesson.content?.goal ? (
           <div className="mt-8 rounded-[24px] border border-primary/15 bg-primary/8 p-6">
             <div className="mb-2 font-mono text-xs uppercase tracking-[0.22em] text-primary/90">

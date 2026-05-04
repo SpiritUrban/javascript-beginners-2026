@@ -24,6 +24,10 @@ export type LessonHomework = {
 
 export type LessonContent = {
   goal?: string;
+  video?: {
+    title: string;
+    url: string;
+  };
   sections?: LessonSection[];
   useCases?: LessonUseCase[];
   reasons?: string[];
@@ -55,6 +59,10 @@ export const lessons: Lesson[] = [
       "Що потрібно для старту в курсі",
     ],
     content: {
+      video: {
+        title: "Відео до уроку 1",
+        url: "https://www.youtube.com/embed/dv6y_IGxaqw",
+      },
       goal:
         "Зрозуміти, що таке JavaScript, чому він такий важливий і де саме його використовують.",
       sections: [
@@ -158,6 +166,10 @@ export const lessons: Lesson[] = [
       "Перевірка, що автоперезавантаження і JavaScript працюють",
     ],
     content: {
+      video: {
+        title: "Відео до уроку 2",
+        url: "https://www.youtube.com/embed/czwFBZgLMNc",
+      },
       goal:
         "Налаштувати професійне, але просте робоче середовище, в якому ми будемо працювати весь курс.",
       setup: [
