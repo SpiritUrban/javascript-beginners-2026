@@ -264,17 +264,106 @@ export const lessons: Lesson[] = [
     },
   },
   {
-    slug: "functions-and-scope",
-    level: "Core",
-    duration: "18 min",
-    title: "Functions and Scope",
+    slug: "first-program-console-log-and-script",
+    level: "Start",
+    duration: "17 min",
+    title: "Перша програма — console.log та підключення скрипта",
     description:
-      "Функції, параметри, return і базове розуміння області видимості.",
+      "Третій урок про створення окремого JavaScript-файлу, його підключення до HTML і перші повідомлення в консолі браузера.",
     bullets: [
-      "Function declaration та arrow functions",
-      "Локальна і глобальна область видимості",
-      "Малі reusable-блоки логіки",
+      "Підключення зовнішнього файлу `script.js`",
+      "Робота з `console.log()`",
+      "Перший запуск JavaScript через Live Server",
     ],
+    content: {
+      video: {
+        title: "Відео до уроку 3",
+        url: "https://www.youtube.com/embed/gDJgHskdouM",
+      },
+      goal:
+        "Навчитися створювати окремий JavaScript-файл, підключати його до HTML та виводити інформацію в консоль браузера.",
+      sections: [
+        {
+          title: "Теорія",
+          paragraphs: [
+            "Існує два основних способи додавати JavaScript на сторінку: всередині HTML через тег `script` або через окремий файл `.js`.",
+            "Ми будемо використовувати другий спосіб, тому що це стандартна практика в сучасній розробці. Вона робить код чистішим, зручнішим для підтримки і масштабування.",
+          ],
+          bullets: [
+            "Всередині HTML через тег `<script>`.",
+            "Окремий файл `.js` — найкраща практика.",
+          ],
+        },
+        {
+          title: "Практика: створюємо файли",
+          bullets: [
+            "Відкрийте вашу папку `javascript-course` у VS Code.",
+            "Створіть два файли в корені папки: `index.html` і `script.js`.",
+          ],
+        },
+        {
+          title: "Файл index.html",
+          codeTitle: "index.html",
+          code: `<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3 - Перша програма</title>
+</head>
+<body>
+    <h1>Моя перша програма на JavaScript</h1>
+    <p>Відкрий консоль браузера (F12)</p>
+
+    <!-- Підключаємо зовнішній скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>`,
+        },
+        {
+          title: "Файл script.js",
+          codeTitle: "script.js",
+          code: `// Це коментар — він не виконується
+console.log("Привіт, світ! 👋");
+console.log("Це моя перша програма на JavaScript");
+console.log("Сьогодні: " + new Date().toLocaleDateString("uk-UA"));
+
+// Можна виводити числа, текст, об'єкти
+console.log(42);
+console.log("Я вивчаю JS у 2026 році 🚀");`,
+        },
+        {
+          title: "Як запустити",
+          bullets: [
+            "Збережіть обидва файли через `Ctrl + S`.",
+            "Клікніть правою кнопкою по `index.html` → `Open with Live Server`.",
+            "Натисніть `F12` або `Ctrl + Shift + I` і відкрийте вкладку `Console`.",
+            "У консолі повинні з'явитися всі ваші повідомлення.",
+          ],
+        },
+        {
+          title: "Важливі моменти",
+          bullets: [
+            "Тег `<script>` найкраще ставити перед закриваючим тегом `</body>`.",
+            "Файл скрипта повинен мати розширення `.js`.",
+            "`console.log()` — це базовий інструмент для перевірки та відладки коду.",
+            "JavaScript чутливий до регістру: `Console.log` не спрацює.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створіть файли `index.html` та `script.js`.",
+          "Підключіть скрипт до HTML.",
+          "Виведіть у консоль своє ім'я, вік, що ви хочете навчитися на цьому курсі, і сьогоднішню дату.",
+          "Змініть текст заголовка на сторінці через JavaScript.",
+        ],
+        code: `document.querySelector("h1").textContent = "Я вже програмую!";`,
+        note:
+          "Готово! Після цього у вас вже буде перша окрема JavaScript-програма з підключеним зовнішнім файлом і зміною сторінки через код.",
+      },
+    },
   },
   {
     slug: "arrays-and-iteration",
