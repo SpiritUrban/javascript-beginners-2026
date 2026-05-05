@@ -18,6 +18,7 @@ export type LessonUseCase = {
 export type LessonHomework = {
   title: string;
   tasks: string[];
+  codeTitle?: string;
   code?: string;
   note?: string;
 };
@@ -134,6 +135,7 @@ export const lessons: Lesson[] = [
           "Усередині створеної папки створи файл `index.html`.",
           "Скопіюй у файл приклад нижче та відкрий його в браузері.",
         ],
+        codeTitle: "index.html",
         code: `<!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -359,6 +361,7 @@ console.log("Я вивчаю JS у 2026 році 🚀");`,
           "Виведіть у консоль своє ім'я, вік, що ви хочете навчитися на цьому курсі, і сьогоднішню дату.",
           "Змініть текст заголовка на сторінці через JavaScript.",
         ],
+        codeTitle: "script.js",
         code: `document.querySelector("h1").textContent = "Я вже програмую!";`,
         note:
           "Готово! Після цього у вас вже буде перша окрема JavaScript-програма з підключеним зовнішнім файлом і зміною сторінки через код.",

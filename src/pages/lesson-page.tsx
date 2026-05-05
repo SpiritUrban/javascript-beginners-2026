@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { CodeBlock } from "@/components/ui/code-block";
 import { getLessonBySlug } from "@/lessons/lesson-data";
 
 export function LessonPage() {
@@ -105,14 +106,7 @@ export function LessonPage() {
                   </div>
                 ) : null}
                 {section.code ? (
-                  <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#0a1120]">
-                    <div className="border-b border-white/10 px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-slate-400">
-                      {section.codeTitle ?? "code"}
-                    </div>
-                    <pre className="overflow-x-auto p-5 text-sm leading-7 text-slate-200">
-                      <code>{section.code}</code>
-                    </pre>
-                  </div>
+                  <CodeBlock code={section.code} title={section.codeTitle} />
                 ) : null}
                 {section.note ? (
                   <p className="max-w-4xl leading-8 text-muted-foreground">{section.note}</p>
@@ -216,14 +210,10 @@ export function LessonPage() {
               </div>
 
               {lesson.content.homework.code ? (
-                <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#0a1120]">
-                  <div className="border-b border-white/10 px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-slate-400">
-                    index.html
-                  </div>
-                  <pre className="overflow-x-auto p-5 text-sm leading-7 text-slate-200">
-                    <code>{lesson.content.homework.code}</code>
-                  </pre>
-                </div>
+                <CodeBlock
+                  code={lesson.content.homework.code}
+                  title={lesson.content.homework.codeTitle ?? "code"}
+                />
               ) : null}
             </div>
             {lesson.content.homework.note ? (
