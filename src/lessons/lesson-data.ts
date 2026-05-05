@@ -4,9 +4,15 @@ export type LessonSection = {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
+  table?: LessonTable;
   codeTitle?: string;
   code?: string;
   note?: string;
+};
+
+export type LessonTable = {
+  headers: string[];
+  rows: string[][];
 };
 
 export type LessonUseCase = {
@@ -481,6 +487,358 @@ console.log("Рядок 3"); // можна і з крапкою, і без
           "Виправте помилку і переконайтеся, що код знову працює.",
           "Напишіть у чаті: `Урок 4 пройдено`.",
         ],
+      },
+    },
+  },
+  {
+    slug: "variables-let-const-var",
+    level: "Core",
+    duration: "18 min",
+    title: "Змінні — let, const, var — коли що використовувати",
+    description:
+      "П’ятий урок про те, як зберігати дані в JavaScript і як правильно обирати між `const`, `let` і `var` у реальному коді.",
+    bullets: [
+      "Що таке змінна і як вона зберігає дані",
+      "Різниця між `const`, `let` і `var`",
+      "Правила іменування змінних і безпечні звички з самого старту",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 5",
+        url: "https://www.youtube.com/embed/SsxMA4KJP9o",
+      },
+      goal:
+        "Розібратися, як створювати і зберігати дані в JavaScript, і зрозуміти різницю між let, const і var.",
+      sections: [
+        {
+          title: "Що таке змінна?",
+          paragraphs: [
+            "Змінна — це коробка з назвою, в якій можна зберігати дані. Потім ці дані можна використовувати в коді, показувати на сторінці, змінювати або порівнювати.",
+          ],
+          codeTitle: "variables.js",
+          code: `let name = "Дмитро";
+let age = 25;
+let isStudent = true;`,
+        },
+        {
+          title: "Порівняння let, const і var",
+          table: {
+            headers: [
+              "Особливість",
+              "const",
+              "let",
+              "var",
+            ],
+            rows: [
+              ["Можна змінювати значення", "❌ Ні", "✅ Так", "✅ Так"],
+              ["Область видимості", "Блокова", "Блокова", "Функціональна"],
+              ["Підняття (hoisting)", "Ні (TDZ)", "Ні (TDZ)", "Так"],
+              [
+                "Рекомендація",
+                "Використовувати завжди, коли можна",
+                "Коли потрібно змінювати",
+                "Не використовувати",
+              ],
+            ],
+          },
+        },
+        {
+          title: "Практика — виконайте в script.js",
+          codeTitle: "script.js",
+          code: `// === Урок 5 — Змінні ===
+
+// 1. const — для постійних значень
+const courseName = "JavaScript для початківців 2026";
+const birthYear = 2005;
+
+// birthYear = 2006; // ❌ Помилка! const не можна змінювати
+
+// 2. let — коли значення буде змінюватися
+let age = 20;
+let city = "Київ";
+
+console.log("Курс:", courseName);
+console.log("Вік:", age);
+
+age = 21;                    // ✅ Можна змінювати
+city = "Львів";              // ✅ Можна змінювати
+
+console.log("Новий вік:", age);
+console.log("Нове місто:", city);
+
+// 3. var — старий спосіб (не використовуйте)
+var oldVariable = "Це старий стиль";
+
+// Правила іменування змінних
+const userName = "Олександр";     // camelCase — рекомендовано
+const user_name = "Олександр";    // snake_case
+const UserName = "Олександр";     // PascalCase (для класів)`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "Спочатку пишіть `const`. Якщо пізніше зрозумієте, що значення потрібно змінювати — поміняйте на `let`.",
+            "Назви змінних повинні бути зрозумілими.",
+            "Використовуйте `camelCase`: перше слово з маленької літери, наступні — з великої.",
+            "Не починайте назву з цифри і не використовуйте зарезервовані слова: `let`, `const`, `function` та інші.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створіть у `script.js` змінні для імені, прізвища, віку та професії.",
+          "Виведіть у консоль повне ім’я, вік і професію.",
+          "Змініть вік і професію та виведіть оновлені значення ще раз.",
+          "Спробуйте самостійно пояснити, чому для одних даних краще `const`, а для інших — `let`.",
+        ],
+        codeTitle: "script.js",
+        code: `const firstName = "Твоє Ім'я";
+const lastName = "Твоє Прізвище";
+let age = 20;
+let profession = "Студент / Початківець";
+
+console.log("Повне ім'я:", firstName, lastName);
+console.log("Вік:", age);
+console.log("Професія:", profession);
+
+// Змініть вік і професію і виведіть ще раз`,
+        note: "Готово! Після цього уроку ти вже будеш розуміти базову логіку зберігання даних у JavaScript і не плутатимешся між `const`, `let` та `var`.",
+      },
+    },
+  },
+  {
+    slug: "data-types-number-string-boolean-undefined-null",
+    level: "Core",
+    duration: "18 min",
+    title: "Типи даних — number, string, boolean, undefined, null",
+    description:
+      "Шостий урок про базові типи даних у JavaScript і про те, як визначати тип змінної через `typeof`.",
+    bullets: [
+      "Основні примітивні типи даних у JavaScript",
+      "Практика з `typeof` і перевіркою типів",
+      "Важливі винятки: `null` і `NaN`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 6",
+        url: "https://www.youtube.com/embed/xZmcnp_84sw",
+      },
+      goal:
+        "Вивчити основні типи даних у JavaScript і навчитися визначати тип змінної за допомогою typeof.",
+      sections: [
+        {
+          title: "Основні примітивні типи даних",
+          table: {
+            headers: ["Тип", "Опис", "Приклади", "typeof"],
+            rows: [
+              [
+                "number",
+                "Числа (цілі та дробові)",
+                "42, 3.14, -5, Infinity",
+                '"number"',
+              ],
+              [
+                "string",
+                "Текст",
+                '"Привіт", \'JS\', `Шаблон`',
+                '"string"',
+              ],
+              [
+                "boolean",
+                "Логічний тип (правда/брехня)",
+                "true, false",
+                '"boolean"',
+              ],
+              [
+                "undefined",
+                "Значення не присвоєно",
+                "Змінна без значення",
+                '"undefined"',
+              ],
+              [
+                "null",
+                "Порожнє / відсутнє значення",
+                "null",
+                '"object" ⚠️',
+              ],
+            ],
+          },
+        },
+        {
+          title: "Практика — виконайте в script.js",
+          codeTitle: "script.js",
+          code: `// === Урок 6 — Типи даних ===
+
+const courseName = "JavaScript для початківців 2026";   // string
+let age = 25;                                           // number
+let isStudent = true;                                   // boolean
+let score = 98.7;                                       // number
+let city = null;                                        // null
+let futureJob;                                          // undefined
+
+console.log("Назва курсу:", courseName);
+console.log("Тип courseName:", typeof courseName);
+
+console.log("Вік:", age);
+console.log("Тип age:", typeof age);
+
+console.log("Студент?", isStudent);
+console.log("Тип isStudent:", typeof isStudent);
+
+console.log("Місто:", city);
+console.log("Тип city:", typeof city);        // ⚠️ object — відома помилка JS
+
+console.log("futureJob:", futureJob);
+console.log("Тип futureJob:", typeof futureJob);
+
+// Приклади number
+console.log(typeof 42);
+console.log(typeof 3.14);
+console.log(typeof Infinity);
+console.log(typeof NaN);          // "number" — Not a Number`,
+        },
+        {
+          title: "Важливі моменти",
+          bullets: [
+            '`typeof null` повертає `"object"` — це відома історична помилка JavaScript.',
+            '`NaN` (Not a Number) має тип `number`.',
+            'Рядки можна створювати трьома способами: `" "`, `\' \'`, `` ` ` ``.',
+            "`const` і `let` не змінюють тип даних після створення.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створіть змінні з різними типами даних: ваше ім’я, вік, чи ви зараз навчаєтесь, змінну без значення і `salary = null`.",
+          "Виведіть усі змінні та їх типи через `typeof` у консоль.",
+          'Спробуйте змінити тип змінної, наприклад: `age = "двадцять п\'ять"`.',
+          "Поспостерігайте, як JavaScript дозволяє змінювати тип значення в одній і тій самій змінній.",
+        ],
+        note:
+          "Відмінно! Тепер ви знаєте, які дані може зберігати JavaScript і як швидко перевіряти їх тип.",
+      },
+    },
+  },
+  {
+    slug: "type-conversion-and-coercion",
+    level: "Core",
+    duration: "19 min",
+    title: "Перетворення типів (типізація)",
+    description:
+      "Сьомий урок про те, як перетворювати значення між `string`, `number` і `boolean`, і як JavaScript інколи робить це автоматично.",
+    bullets: [
+      "Явне перетворення типів через `Number`, `String`, `Boolean`",
+      "Неявне перетворення типів у виразах",
+      "Небезпечні місця, де JavaScript може поводитися неочевидно",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 7",
+        url: "https://www.youtube.com/embed/5jsxhQqkfQ4",
+      },
+      goal:
+        "Навчитися перетворювати один тип даних в інший і розуміти, як JavaScript робить це автоматично.",
+      sections: [
+        {
+          title: "Два види перетворення",
+          bullets: [
+            "Явне перетворення — ми самі вказуємо, у який тип потрібно перевести значення. Це рекомендований шлях.",
+            "Неявне перетворення — JavaScript робить це сам під час обчислень. Це називається type coercion.",
+          ],
+        },
+        {
+          title: "1. Явне перетворення",
+          codeTitle: "script.js",
+          code: `// === Урок 7 — Перетворення типів ===
+
+const age = "25";           // string
+const score = "98.7";       // string
+const isActive = "true";    // string
+
+// Перетворення в число
+console.log(Number(age));           // 25
+console.log(Number(score));         // 98.7
+console.log(Number("Привіт"));      // NaN
+
+// Перетворення в рядок
+console.log(String(42));            // "42"
+console.log(42 + "");               // "42" (короткий спосіб)
+
+// Перетворення в boolean
+console.log(Boolean(1));            // true
+console.log(Boolean(0));            // false
+console.log(Boolean(""));           // false
+console.log(Boolean(" "));          // true
+console.log(Boolean(null));         // false
+console.log(Boolean(undefined));    // false`,
+        },
+        {
+          title: "2. Неявне перетворення (Type Coercion)",
+          codeTitle: "coercion.js",
+          code: `console.log("5" + 5);       // "55"  (число перетворилось у рядок)
+console.log("5" - 5);       // 0     (рядок перетворився у число)
+console.log("5" * 2);       // 10
+console.log("5" / 2);       // 2.5
+
+console.log(5 + null);      // 5
+console.log(5 + undefined); // NaN
+
+// Boolean в числах
+console.log(true + 1);      // 2
+console.log(false + 10);    // 10`,
+        },
+        {
+          title: "Важливі правила",
+          table: {
+            headers: ["Значення", "Boolean()", "Number()", "String()"],
+            rows: [
+              ["0", "false", "0", '"0"'],
+              ['""', "false", "0", '""'],
+              ["null", "false", "0", '"null"'],
+              ["undefined", "false", "NaN", '"undefined"'],
+              ["NaN", "false", "NaN", '"NaN"'],
+              ["Все інше", "true", "залежить від значення", "рядок"],
+            ],
+          },
+          note:
+            "Особливо зверни увагу на `undefined` і `NaN`: вони часто ламають логіку там, де новачок очікує звичайне число.",
+        },
+        {
+          title: "Корисні функції",
+          bullets: [
+            '`parseInt("25 років")` → `25`.',
+            '`parseFloat("98.7")` → `98.7`.',
+            '`Number("25")` → `25` — сучасніший і більш прямий спосіб.',
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Виконайте приклад з `a` і `b` та спробуйте передбачити результат до запуску.",
+          "Порівняйте `a + b` і `Number(a) + Number(b)`.",
+          "Перевірте різницю між звичайною конкатенацією і шаблонним рядком.",
+          "Перетворіть `price` і `quantity` у числа та обчисліть загальну вартість.",
+        ],
+        codeTitle: "script.js",
+        code: `const a = "15";
+const b = "10";
+
+console.log(a + b);           // що буде?
+console.log(Number(a) + Number(b));
+
+console.log("Я маю " + 5 + " яблук");
+console.log(\`Я маю \${5} яблук\`); // шаблонний рядок
+
+// Перетворіть і виведіть:
+let price = "199.99";
+let quantity = "3";
+
+// Обчисліть загальну вартість`,
+        note:
+          "Молодець! Ви тепер розумієте одну з найважливіших і найпідступніших тем JavaScript.",
       },
     },
   },

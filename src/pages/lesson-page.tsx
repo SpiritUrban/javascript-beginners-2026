@@ -105,6 +105,42 @@ export function LessonPage() {
                     ))}
                   </div>
                 ) : null}
+                {section.table ? (
+                  <div className="overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.03]">
+                    <div
+                      className="grid border-b border-white/10 bg-white/[0.04] text-sm font-medium text-slate-200"
+                      style={{
+                        gridTemplateColumns: `repeat(${section.table.headers.length}, minmax(0, 1fr))`,
+                      }}
+                    >
+                      {section.table.headers.map((header) => (
+                        <div key={header} className="p-4">
+                          {header}
+                        </div>
+                      ))}
+                    </div>
+                    {section.table.rows.map((row, rowIndex) => (
+                      <div
+                        key={`${section.title}-${rowIndex}`}
+                        className="grid border-b border-white/10 last:border-b-0"
+                        style={{
+                          gridTemplateColumns: `repeat(${section.table?.headers.length ?? 1}, minmax(0, 1fr))`,
+                        }}
+                      >
+                        {row.map((cell, cellIndex) => (
+                          <div
+                            key={`${section.title}-${rowIndex}-${cellIndex}`}
+                            className={`p-4 leading-7 ${
+                              cellIndex === 0 ? "font-medium text-foreground" : "text-muted-foreground"
+                            }`}
+                          >
+                            {cell}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
                 {section.code ? (
                   <CodeBlock code={section.code} title={section.codeTitle} />
                 ) : null}
