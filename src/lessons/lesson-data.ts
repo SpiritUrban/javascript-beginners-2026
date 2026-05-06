@@ -842,6 +842,125 @@ let quantity = "3";
       },
     },
   },
+  {
+    slug: "operators-arithmetic-comparison-logical",
+    level: "Core",
+    duration: "20 min",
+    title: "Оператори — арифметичні, порівняння, логічні",
+    description:
+      "Восьмий урок про базові оператори JavaScript: як рахувати, порівнювати значення і будувати логічні умови.",
+    bullets: [
+      "Арифметичні оператори: `+`, `-`, `*`, `/`, `%`, `**`",
+      "Порівняння через `>`, `<`, `===`, `!==` та інші",
+      "Логічні оператори `&&`, `||`, `!` і пріоритет виразів",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 8",
+        url: "https://www.youtube.com/embed/aw-GaeCCZwQ",
+      },
+      goal:
+        "Вивчити основні оператори JavaScript і навчитися правильно їх використовувати.",
+      sections: [
+        {
+          title: "1. Арифметичні оператори",
+          codeTitle: "script.js",
+          code: `// === Урок 8 — Оператори ===
+
+const a = 10;
+const b = 3;
+
+console.log("Додавання:", a + b);           // 13
+console.log("Віднімання:", a - b);          // 7
+console.log("Множення:", a * b);            // 30
+console.log("Ділення:", a / b);             // 3.333...
+console.log("Остача від ділення:", a % b);  // 1
+console.log("Піднесення до степеня:", a ** b); // 1000
+
+// Збільшення / зменшення
+let counter = 5;
+console.log(counter++);   // 5 (постфікс)
+console.log(++counter);   // 7 (префікс)`,
+        },
+        {
+          title: "2. Оператори порівняння",
+          paragraphs: [
+            "Оператори порівняння повертають `true` або `false`. Вони потрібні для перевірок в умовах, циклах, валідації та майже в кожному реальному скрипті.",
+          ],
+          codeTitle: "comparison.js",
+          code: `const age = 25;
+
+console.log(age > 18);     // true
+console.log(age >= 25);    // true
+console.log(age < 18);     // false
+console.log(age <= 25);    // true
+
+console.log(age == 25);    // true  (нестроге)
+console.log(age == "25");  // true  (перетворює тип)
+
+console.log(age === 25);   // true  (строге — рекомендовано)
+console.log(age === "25"); // false (різні типи)`,
+          note:
+            "Правило: використовуйте `===` і `!==` — строге порівняння без неочікуваного перетворення типів безпечніше.",
+        },
+        {
+          title: "3. Логічні оператори",
+          codeTitle: "logical.js",
+          code: `const hasTicket = true;
+const hasPassport = false;
+const isAdult = true;
+
+console.log("І можна летіти?", hasTicket && hasPassport);     // false (І)
+console.log("Можна хоча б щось?", hasTicket || hasPassport);  // true  (АБО)
+console.log("Не дорослий?", !isAdult);                        // false (НІ)`,
+        },
+        {
+          title: "Таблиця пріоритету операторів",
+          table: {
+            headers: ["Пріоритет", "Оператори"],
+            rows: [
+              ["1", "**"],
+              ["2", "*, /, %"],
+              ["3", "+, -"],
+              ["4", "<, >, <=, >="],
+              ["5", "===, !==, ==, !="],
+              ["6", "&&"],
+              ["7", "||"],
+            ],
+          },
+          note:
+            "Якщо є сумнів у порядку виконання, ставте дужки. Це робить код зрозумілішим і зменшує ризик помилок.",
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Обчисліть два вирази з `x` і `y` та поясніть різницю між результатами.",
+          "Перевірте, чи може користувач редагувати статтю через `isLoggedIn && hasPermission`.",
+          "Створіть власні приклади з віком, ціною товару і знижкою.",
+          "Спробуйте додати дужки в арифметичні вирази і подивіться, як це змінює результат.",
+        ],
+        codeTitle: "script.js",
+        code: `const x = 15;
+const y = 4;
+
+// 1. Обчисліть:
+console.log(x + y * 2);
+console.log((x + y) * 2);
+
+// 2. Перевірте:
+const isLoggedIn = true;
+const hasPermission = false;
+
+// Чи може користувач редагувати статтю?
+console.log(isLoggedIn && hasPermission);
+
+// 3. Створіть свої приклади з віком, ціною товару і знижкою`,
+        note:
+          "Молодець! Ви тепер знаєте всі базові оператори, які використовуються майже в кожному скрипті.",
+      },
+    },
+  },
 ];
 
 export function getLessonBySlug(slug: string) {
