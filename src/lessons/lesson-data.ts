@@ -2055,6 +2055,1373 @@ console.log(getAgeStatus(16));`,
       },
     },
   },
+  {
+    slug: "function-expression-and-arrow-functions",
+    level: "Core",
+    duration: "20 min",
+    title: "Function Expression та стрілкові функції (Arrow Functions)",
+    description:
+      "Двадцятий урок розширює тему функцій: тепер ти побачиш `Function Expression` і стрілкові функції, які домінують у сучасному JavaScript-коді.",
+    bullets: [
+      "Що таке `Function Expression` і чим він відрізняється від `Function Declaration`",
+      "Стрілкові функції як сучасний стандарт",
+      "Коли краще використовувати кожен спосіб оголошення функцій",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 20",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Розібратися з альтернативними способами створення функцій та зрозуміти, коли який спосіб краще використовувати.",
+      sections: [
+        {
+          title: "Function Expression",
+          codeTitle: "function-expression.js",
+          code: `// === Урок 20 — Function Expression + Arrow Functions ===
+
+// Function Declaration (ми вивчали в попередньому уроці)
+function greet() {
+    console.log("Слава Роду!");
+}
+
+// Function Expression
+const greetExpr = function() {
+    console.log("🌳 Вітаю тебе, воїне Сварога!");
+};
+
+greetExpr();`,
+        },
+        {
+          title: "Стрілкові функції (Arrow Functions)",
+          paragraphs: [
+            "Arrow Functions — це коротший і зручніший спосіб запису функцій. Саме їх ти найчастіше будеш бачити в сучасному React та загалом у новому JavaScript-коді.",
+          ],
+          codeTitle: "arrow-functions.js",
+          code: `// Найпростіша стрілкова функція
+const greetArrow = () => {
+    console.log("⚡ Нехай сила предків буде з тобою!");
+};
+
+// З параметрами
+const sayHello = (name) => {
+    console.log(\`Слава, \${name}! 🌿\`);
+};
+
+// Якщо один параметр — дужки можна опустити
+const wishPower = name => {
+    console.log(\`\${name}, нехай Сварог дарує тобі силу коду!\`);
+};
+
+// Якщо функція повертає одне значення — можна без фігурних дужок
+const multiply = (a, b) => a * b;
+
+console.log(multiply(7, 8)); // 56`,
+        },
+        {
+          title: "Порівняння способів оголошення функцій",
+          table: {
+            headers: ["Спосіб", "Hoisting", "this", "Коли використовувати"],
+            rows: [
+              ["Function Declaration", "Так", "Звичайний", "Коли потрібен hoisting"],
+              ["Function Expression", "Ні", "Звичайний", "Коли функцію присвоюємо змінній"],
+              ["Arrow Function", "Ні", "Особливий", "Найчастіше у сучасному коді"],
+            ],
+          },
+        },
+        {
+          title: "Практичні приклади",
+          codeTitle: "function-styles-practice.js",
+          code: `// Калькулятор сили
+const calculateStrength = (age, hoursPerDay) => {
+    const strength = Math.round(age * hoursPerDay * 0.8);
+    return strength > 100 ? "Легендарний рівень ⚡" : \`Сила: \${strength} балів 🌳\`;
+};
+
+console.log(calculateStrength(25, 3));
+console.log(calculateStrength(17, 1));
+
+// Функція з умовою в один рядок
+const canBeWarrior = age => age >= 16 ? "Можеш починати шлях" : "Ще рано, юний дубе";`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "Стрілкові функції не мають власного `this` — до цієї теми повернемося пізніше.",
+            "Якщо функція складається з одного виразу, можна писати без `{}` і без `return`.",
+            "У сучасному JavaScript стрілкові функції використовують найчастіше.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Перепиши всі функції з уроку 19 у стрілкові функції: `sayMotivation`, `calculateSum`, `getPowerLevel`, `wishGoodLuck`.",
+          "Подивись, як змінюється запис функції, якщо вона повертає значення в один рядок.",
+          "Зверни увагу, де можна прибрати дужки навколо одного параметра.",
+          "Бонус: створи стрілкову функцію `startTraining(name, days)`, яка виводить мотиваційний план на `days` днів.",
+        ],
+        note:
+          "Відмінно! ⚡🌿 Тепер ти знаєш три способи створення функцій і можеш обирати найзручніший.",
+      },
+    },
+  },
+  {
+    slug: "function-parameters-and-default-values",
+    level: "Core",
+    duration: "18 min",
+    title: "Параметри функцій та значення за замовчуванням",
+    description:
+      "Двадцять перший урок присвячений параметрам функцій і default values. Це важливий крок до гнучких і зручних функцій, які працюють коректно навіть без усіх аргументів.",
+    bullets: [
+      "Як передавати дані у функції через параметри",
+      "Як працюють значення за замовчуванням",
+      "Як поєднувати default parameters зі стрілковими функціями",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 21",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися правильно передавати дані в функції та задавати значення за замовчуванням.",
+      sections: [
+        {
+          title: "Параметри функцій",
+          codeTitle: "function-parameters.js",
+          code: `// === Урок 21 — Параметри та значення за замовчуванням ===
+
+function greetWarrior(name, powerLevel) {
+    console.log(\`⚡ Слава Сварогу, \${name}!\`);
+    console.log(\`Твій рівень сили: \${powerLevel}\`);
+}
+
+greetWarrior("Владислав", 87);
+greetWarrior("Марія", 64);`,
+        },
+        {
+          title: "Значення за замовчуванням (Default Parameters)",
+          codeTitle: "default-parameters.js",
+          code: `function trainWarrior(name = "Воїн", days = 7, hoursPerDay = 2) {
+    console.log(\`🌳 Тренування розпочато для \${name}\`);
+    console.log(\`Тривалість: \${days} днів по \${hoursPerDay} годин\`);
+    
+    const totalHours = days * hoursPerDay;
+    console.log(\`Загальна кількість годин: \${totalHours} годин ⚡\`);
+}
+
+trainWarrior("Олег", 14, 3);     // з параметрами
+trainWarrior("Софія");           // тільки ім'я
+trainWarrior();                  // повністю за замовчуванням`,
+        },
+        {
+          title: "Практичні приклади",
+          codeTitle: "default-parameters-practice.js",
+          code: `// Калькулятор сили з параметрами за замовчуванням
+const calculateTotalPower = (age = 18, hoursPerWeek = 10, weeks = 4) => {
+    const power = Math.round(age * hoursPerWeek * weeks * 0.35);
+    return power;
+};
+
+console.log("Сила Олега:", calculateTotalPower(25, 15, 8));
+console.log("Сила новачка:", calculateTotalPower()); // використовує значення за замовчуванням`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "Значення за замовчуванням задаються через `=` прямо в списку параметрів.",
+            "Параметри зі значеннями за замовчуванням зазвичай краще ставити ближче до кінця.",
+            "Якщо функція нічого не повертає через `return`, вона повертає `undefined`.",
+            "Можна вільно комбінувати `Function Declaration`, `Arrow Functions` і значення за замовчуванням.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи функцію `showTrainingPlan(name = \"Воїн\", level = \"початківець\", days = 30)`.",
+          "Функція повинна приймати ім'я, рівень (`початківець / воїн / майстер`) та кількість днів.",
+          "Виводь персональний план тренувань на JavaScript.",
+          "Додай різні мотиваційні повідомлення залежно від рівня.",
+          "Бонус: зроби цю функцію стрілковою.",
+        ],
+        codeTitle: "show-training-plan.js",
+        code: `function showTrainingPlan(name = "Воїн", level = "початківець", days = 30) {
+    // ...
+}`,
+        note:
+          "Чудово! ⚡🌳 Ти тепер вмієш працювати з функціями на досить високому рівні.",
+      },
+    },
+  },
+  {
+    slug: "function-return-values",
+    level: "Core",
+    duration: "18 min",
+    title: "Повернення значень з функцій (return)",
+    description:
+      "Двадцять другий урок присвячений `return` — одному з ключових механізмів у функціях. Саме через нього функції починають не просто щось виводити, а віддавати корисний результат для подальшої роботи.",
+    bullets: [
+      "Що таке `return` і як він завершує виконання функції",
+      "Як повертати числа, рядки та об'єкти",
+      "Як будувати перевикористовувані функції через повернення значень",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 22",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися повертати результат з функції за допомогою `return` — це ключ до створення корисних і перевикористовуваних функцій.",
+      sections: [
+        {
+          title: "Що таке return?",
+          codeTitle: "function-return.js",
+          code: `// === Урок 22 — Return та повернення значень ===
+
+function multiply(a, b) {
+    return a * b;        // повертає результат
+}
+
+const result = multiply(7, 8);
+console.log("Результат:", result); // 56`,
+        },
+        {
+          title: "Приклади з українським колоритом",
+          codeTitle: "return-ukrainian-examples.js",
+          code: `// 1. Функція, яка повертає рівень сили
+function getPowerLevel(age, hoursPerDay) {
+    const power = Math.round(age * hoursPerDay * 1.15);
+    return power;
+}
+
+console.log("Сила Олега:", getPowerLevel(26, 4)); // 119
+
+// 2. Функція з кількома return
+function getWarriorTitle(age) {
+    if (age < 16) return "Юний дубок 🌱";
+    if (age < 20) return "Молодий воїн ⚔️";
+    if (age < 30) return "Сильний Сварожич ⚡";
+    return "Мудрий предок 🌳";
+}
+
+console.log(getWarriorTitle(17));
+console.log(getWarriorTitle(28));`,
+        },
+        {
+          title: "Важливі правила return",
+          codeTitle: "return-rules.js",
+          code: `function example() {
+    console.log("Цей код виконається");
+
+    return 42;           // функція зупиняється тут!
+
+    console.log("Цей код вже ніколи не виконається"); // мертвий код
+}
+
+const value = example();
+console.log(value); // 42`,
+        },
+        {
+          title: "Практичний приклад — Калькулятор сили роду",
+          codeTitle: "clan-strength-calculator.js",
+          code: `const calculateClanStrength = (name, age, daysLearning) => {
+    const strength = Math.round(age * daysLearning * 2.5);
+    
+    let title = "";
+    if (strength > 1000) title = "Легенда Роду ⚡";
+    else if (strength > 500) title = "Могутній Воїн 🌳";
+    else title = "Молодий паросток 🌱";
+
+    return {
+        name: name,
+        totalStrength: strength,
+        title: title
+    };
+};
+
+const oleg = calculateClanStrength("Олег", 24, 45);
+console.log(oleg);`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи функцію `getTrainingResult(name, age, hoursPerWeek, weeks)`.",
+          "Функція повинна приймати 4 параметри.",
+          "Обчислюй загальну кількість годин навчання.",
+          "Обчислюй рівень сили, наприклад через формулу `hoursPerWeek * weeks * age / 10`.",
+          "Поверни об'єкт з полями `name`, `totalHours`, `powerLevel` і `title`.",
+          "Бонус: Виклич цю функцію кілька разів з різними даними і виведи результати.",
+        ],
+        codeTitle: "get-training-result.js",
+        code: `{
+  name: "...",
+  totalHours: ...,
+  powerLevel: ...,
+  title: "..."
+}`,
+        note:
+          "Відмінно! ⚡🌳 Тепер твої функції можуть не просто щось виводити, а повертати результат, який можна використовувати далі.",
+      },
+    },
+  },
+  {
+    slug: "scope-and-closure",
+    level: "Core",
+    duration: "22 min",
+    title: "Область видимості (Scope) та Замикання (Closure)",
+    description:
+      "Двадцять третій урок присвячений тому, де саме доступні змінні в коді і як внутрішні функції можуть зберігати доступ до зовнішніх значень. Це одна з ключових тем для глибшого розуміння JavaScript.",
+    bullets: [
+      "Глобальна, локальна та блокова область видимості",
+      "Чому `var` поводиться інакше, ніж `let` і `const`",
+      "Що таке closure і як воно працює на практиці",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 23",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Розібратися, де «живуть» змінні в коді та що таке замикання — одна з найважливіших і найцікавіших тем JavaScript.",
+      sections: [
+        {
+          title: "Область видимості (Scope)",
+          codeTitle: "scope-basics.js",
+          code: `// === Урок 23 — Scope та Closure ===
+
+// Глобальна область видимості
+const clanName = "Сварожичі";
+
+function train() {
+    // Локальна область видимості (функціональна)
+    const energy = 100;
+    const weapon = "Меч знань";
+
+    console.log(\`Тренується клан \${clanName}\`); // видно глобальну
+    console.log(\`Енергія: \${energy}\`);
+}
+
+train();
+
+// console.log(energy); // ❌ Помилка! energy не видно зовні
+console.log(clanName);   // ✅ видно`,
+        },
+        {
+          title: "Блокова область видимості (let і const)",
+          codeTitle: "block-scope.js",
+          code: `if (true) {
+    let temporaryPower = 500;   // видно тільки всередині блоку {}
+    const sacredTitle = "Воїн Світла";
+    console.log(temporaryPower);
+}
+
+// console.log(temporaryPower); // ❌ Помилка`,
+          bullets: [
+            "`var` має функціональну область видимості й у сучасному коді його краще уникати.",
+            "`let` і `const` живуть у межах блоку `{}` і дають більш передбачувану поведінку.",
+          ],
+        },
+        {
+          title: "Замикання (Closure) — магія JavaScript",
+          codeTitle: "closure-warrior.js",
+          code: `function createWarrior(name) {
+    let power = 50;
+
+    return function trainDay() {
+        power += 25;
+        console.log(\`\${name} тренується... Сила тепер: \${power} ⚡\`);
+    };
+}
+
+const oleg = createWarrior("Олег");
+const sofia = createWarrior("Софія");
+
+oleg();     // Олег тренується... Сила тепер: 75
+oleg();     // Олег тренується... Сила тепер: 100
+sofia();    // Софія тренується... Сила тепер: 75`,
+          paragraphs: [
+            "Замикання — це коли внутрішня функція зберігає доступ до змінних зовнішньої функції навіть після завершення її виконання.",
+          ],
+        },
+        {
+          title: "Практичний приклад",
+          codeTitle: "create-counter.js",
+          code: `function createCounter() {
+    let count = 0;
+
+    return {
+        increment: () => ++count,
+        decrement: () => --count,
+        getValue: () => count
+    };
+}
+
+const warriorCounter = createCounter();
+
+console.log(warriorCounter.increment()); // 1
+console.log(warriorCounter.increment()); // 2
+console.log(warriorCounter.getValue());  // 2`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи функцію `createTrainingPlan(warriorName)`, яка повертає іншу функцію.",
+          "Внутрішня функція при кожному виклику повинна збільшувати прогрес тренування на `10%` і виводити повідомлення.",
+          "Виклич створену функцію 8–10 разів і подивись, як зростає прогрес.",
+          "Бонус: після досягнення `100%` виводь спеціальне повідомлення `Ти став Легендою Роду!`.",
+        ],
+        note:
+          "Сильна робота! ⚡🌳 Ти торкнувся однієї з найглибших концепцій JavaScript.",
+      },
+    },
+  },
+  {
+    slug: "function-practice",
+    level: "Core",
+    duration: "24 min",
+    title: "Практика з функціями",
+    description:
+      "Двадцять четвертий урок завершує модуль про функції. Тут ми збираємо разом параметри, `return`, стрілкові функції, валідацію та об'єкти, щоб перейти від теорії до реальної практики.",
+    bullets: [
+      "Практика з валідацією даних у функціях",
+      "Повернення складних результатів через об'єкти",
+      "Використання функцій для корисних міні-задач",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 24",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Закріпити все, що ми вивчили про функції, через реальну практику.",
+      sections: [
+        {
+          title: "Функція валідації віку",
+          codeTitle: "validate-age.js",
+          code: `function validateAge(age) {
+    if (typeof age !== "number" || age < 0) {
+        return "❌ Некоректний вік";
+    }
+    if (age < 16) return "🌱 Юний дубок (занадто рано)";
+    if (age < 20) return "⚔️ Молодий воїн";
+    if (age < 30) return "🌳 Сильний Сварожич";
+    return "🪶 Мудрий предок";
+}
+
+console.log(validateAge(15));
+console.log(validateAge(25));
+console.log(validateAge("двадцять")); // некоректно`,
+        },
+        {
+          title: "Універсальний калькулятор сили",
+          codeTitle: "calculate-power.js",
+          code: `const calculatePower = (name, age, hoursPerWeek, weeks) => {
+    if (!name || age < 0 || hoursPerWeek < 0) {
+        return "❌ Некоректні дані";
+    }
+
+    const totalHours = hoursPerWeek * weeks;
+    const power = Math.round(totalHours * age * 0.42);
+
+    let title = "";
+    if (power > 1500) title = "Легенда Роду ⚡";
+    else if (power > 800) title = "Могутній Воїн 🌳";
+    else if (power > 300) title = "Сильний Паросток";
+    else title = "Юний Дубок 🌱";
+
+    return {
+        name,
+        totalHours,
+        power,
+        title
+    };
+};
+
+console.log(calculatePower("Ярослав", 23, 12, 8));`,
+        },
+        {
+          title: "Генератор мотиваційних повідомлень",
+          codeTitle: "get-motivation.js",
+          code: `function getMotivation(level) {
+    const messages = {
+        low: "🌱 Навіть маленький крок наближає тебе до мети. Продовжуй!",
+        medium: "⚡ Ти вже сильніший, ніж вчора. Слава Сварогу!",
+        high: "🌳 Ти — вогонь предків! Легенди починаються саме так.",
+        legendary: "🪶 Ти вже не учень. Ти — частина великого Роду розробників."
+    };
+
+    return messages[level] || messages.medium;
+}
+
+console.log(getMotivation("high"));`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи власну систему тренування — функцію `startWarriorJourney()`.",
+          "Функція повинна приймати `name`, `age`, `hoursPerDay`.",
+          "Поверни об'єкт з полями: ім'я, загальна сила, рівень (`junior / middle / senior / legend`), мотиваційне повідомлення і рекомендація щодо кількості днів навчання.",
+          "Використовуй усі знання: параметри за замовчуванням, `return`, стрілкові функції, валідацію.",
+        ],
+        note:
+          "Молодець! ⚡🌳 Ти завершив важливий модуль про функції. Тепер ти можеш писати чисті, організовані та потужні функції.",
+      },
+    },
+  },
+  {
+    slug: "arrays-basics",
+    level: "Core",
+    duration: "20 min",
+    title: "Масиви — створення, доступ, довжина",
+    description:
+      "Двадцять п'ятий урок відкриває модуль про масиви. Тут ми розбираємо, як зберігати багато значень в одному місці, як діставати елементи за індексом і як працює `length`.",
+    bullets: [
+      "Створення масивів і робота з різними типами даних",
+      "Доступ до елементів через індекси",
+      "Властивість `length` і базова зміна масиву",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 25",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися працювати з масивами — одним з найважливіших типів даних у JavaScript. Масиви дозволяють зберігати багато значень в одному місці.",
+      sections: [
+        {
+          title: "Що таке масив?",
+          paragraphs: ["Масив — це упорядкована колекція даних."],
+          codeTitle: "arrays-basics.js",
+          code: `// === Урок 25 — Масиви ===
+
+// 1. Створення масиву
+const skills = ["HTML", "CSS", "JavaScript", "Git"];
+const runes = ["Сварга", "Дуб", "Меч", "Сонце", "Щит"];
+
+// 2. Порожній масив
+const futureSkills = [];
+
+// 3. Масив з різними типами даних
+const warriorInfo = ["Олег", 25, true, null, "Київ"];`,
+        },
+        {
+          title: "Доступ до елементів масиву",
+          paragraphs: ["Індексація в JavaScript починається з 0."],
+          codeTitle: "array-indexing.js",
+          code: `const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js"];
+
+console.log(skills[0]);     // HTML
+console.log(skills[1]);     // CSS
+console.log(skills[2]);     // JavaScript
+console.log(skills[4]);     // Node.js
+
+// Останній елемент
+console.log(skills[skills.length - 1]);`,
+        },
+        {
+          title: "Властивість length",
+          codeTitle: "array-length.js",
+          code: `const skills = ["HTML", "CSS", "JavaScript", "Git", "React"];
+
+console.log("Кількість навичок:", skills.length); // 5
+
+// Додавання нового елемента
+skills[5] = "TypeScript";
+console.log(skills.length); // 6
+
+// Зміна елемента
+skills[0] = "HTML5";
+console.log(skills);`,
+        },
+        {
+          title: "Практичні приклади",
+          codeTitle: "array-practice.js",
+          code: `// Масив воїнів коду
+const clan = ["Владислав", "Марія", "Дмитро", "Софія"];
+
+for (let i = 0; i < clan.length; i++) {
+    console.log(\`Воїн №\${i + 1}: \${clan[i]} ⚡\`);
+}
+
+// Сучасніший спосіб (for...of)
+for (const warrior of clan) {
+    console.log(\`Слава воїну \${warrior}! 🌳\`);
+}`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "Масиви створюються через `[]`.",
+            "Індекси починаються з `0`.",
+            "`length` — це кількість елементів у масиві.",
+            "Масиви можуть містити дані різних типів.",
+            "Масиви змінні (`mutable`) — їх можна змінювати.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи масив `mySkills` з 6–8 елементів — навичок, які ти хочеш вивчити.",
+          "Виведи кількість елементів, перший елемент і останній елемент.",
+          "Зміни 3-й елемент масиву на щось інше.",
+          "Додай новий елемент у кінець масиву вручну через індекс.",
+          "Бонус: через цикл `for` виведи всі елементи у форматі `Навичка 1: HTML ⭐`.",
+        ],
+        note:
+          "Молодець! 🌳⚡ Ти познайомився з масивами — тепер можеш зберігати списки даних.",
+      },
+    },
+  },
+  {
+    slug: "array-methods-basics",
+    level: "Core",
+    duration: "24 min",
+    title: "Основні методи масивів",
+    description:
+      "Двадцять шостий урок присвячений базовим методам масивів. Тут ми розбираємо, як додавати, видаляти, копіювати та змінювати елементи без ручної роботи з індексами.",
+    bullets: [
+      "Додавання і видалення елементів через `push`, `pop`, `unshift`, `shift`",
+      "Копіювання частини масиву через `slice()`",
+      "Зміна масиву через потужний метод `splice()`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 26",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися ефективно додавати, видаляти та змінювати елементи масиву за допомогою вбудованих методів.",
+      sections: [
+        {
+          title: "Основні методи масивів",
+          codeTitle: "array-methods.js",
+          code: `// === Урок 26 — Основні методи масивів ===
+
+const clan = ["Олег", "Марія", "Дмитро", "Софія"];
+console.log(clan);`,
+        },
+        {
+          title: "1. Додавання елементів",
+          codeTitle: "array-push-unshift.js",
+          code: `// Додати в кінець
+clan.push("Ярослав", "Анна");
+console.log(clan);
+
+// Додати на початок
+clan.unshift("Владислав");
+console.log(clan);`,
+        },
+        {
+          title: "2. Видалення елементів",
+          codeTitle: "array-pop-shift.js",
+          code: `// Видалити з кінця
+const lastWarrior = clan.pop();
+console.log("Видалено:", lastWarrior);
+
+// Видалити з початку
+const firstWarrior = clan.shift();
+console.log("Видалено:", firstWarrior);`,
+        },
+        {
+          title: "3. slice() — копіювання частини масиву",
+          paragraphs: ["`slice()` не змінює оригінальний масив, а повертає новий."],
+          codeTitle: "array-slice.js",
+          code: `const skills = ["HTML", "CSS", "JS", "React", "Node.js", "Git"];
+
+const frontend = skills.slice(0, 3);     // від 0 до 3 (не включаючи 3)
+const backend = skills.slice(3);
+
+console.log(frontend); // ["HTML", "CSS", "JS"]
+console.log(backend);  // ["React", "Node.js", "Git"]`,
+        },
+        {
+          title: "4. splice() — потужний метод",
+          paragraphs: ["`splice()` змінює оригінальний масив і може одночасно видаляти та додавати елементи."],
+          codeTitle: "array-splice.js",
+          code: `const warriors = ["Олег", "Марія", "Дмитро", "Софія", "Ярослав"];
+
+// Видалити 2 елементи починаючи з індексу 2
+warriors.splice(2, 2); 
+console.log(warriors);
+
+// Додати елементи на позицію 1
+warriors.splice(1, 0, "Владислав", "Ірина");
+console.log(warriors);`,
+        },
+        {
+          title: "Порівняльна таблиця",
+          table: {
+            headers: ["Метод", "Що робить", "Змінює оригінал?", "Повертає"],
+            rows: [
+              ["`push()`", "додає в кінець", "Так", "нову довжину"],
+              ["`pop()`", "видаляє з кінця", "Так", "видалений елемент"],
+              ["`unshift()`", "додає на початок", "Так", "нову довжину"],
+              ["`shift()`", "видаляє з початку", "Так", "видалений елемент"],
+              ["`slice()`", "копіює частину", "Ні", "новий масив"],
+              ["`splice()`", "видаляє / додає", "Так", "масив видалених елементів"],
+            ],
+          },
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи масив `trainingGroup` з 6 імен воїнів.",
+          "Додай 2 нові імена в кінець через `push()`.",
+          "Додай 1 ім'я на початок через `unshift()`.",
+          "Видали 2-е ім'я з початку через `splice()`.",
+          "Створи новий масив `firstThree`, який містить перші 3 імені через `slice()`.",
+          "Виведи всі масиви та їх довжину.",
+          "Бонус: Напиши функцію `addWarrior(group, name)`, яка додає воїна в масив і виводить повідомлення `Воїн {name} приєднався до клану!`.",
+        ],
+        note:
+          "Гарна робота! ⚡🌳 Тепер ти вмієш професійно працювати з масивами.",
+      },
+    },
+  },
+  {
+    slug: "array-iteration-methods",
+    level: "Core",
+    duration: "26 min",
+    title: "Ітерація масивів (forEach, map, filter, find)",
+    description:
+      "Двадцять сьомий урок присвячений сучасним методам ітерації масивів. Тут ми переходимо від звичайних циклів до більш виразних інструментів, які постійно використовуються у сучасному JavaScript і React.",
+    bullets: [
+      "Як виконувати дію для кожного елемента через `forEach()`",
+      "Як будувати нові масиви через `map()` і `filter()`",
+      "Як знаходити конкретний елемент через `find()`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 27",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися сучасним і зручним способам роботи з кожним елементом масиву.",
+      sections: [
+        {
+          title: "1. forEach() — виконати дію для кожного елемента",
+          codeTitle: "array-foreach.js",
+          code: `// === Урок 27 — Ітерація масивів ===
+
+const warriors = ["Олег", "Марія", "Дмитро", "Софія", "Ярослав"];
+
+warriors.forEach((name, index) => {
+    console.log(\`Воїн №\${index + 1}: \${name} ⚡\`);
+});`,
+        },
+        {
+          title: "2. map() — створює новий масив",
+          codeTitle: "array-map.js",
+          code: `const skills = ["html", "css", "javascript", "react"];
+
+const upperSkills = skills.map(skill => skill.toUpperCase());
+const skillLength = skills.map(skill => skill.length);
+
+console.log(upperSkills);
+// ["HTML", "CSS", "JAVASCRIPT", "REACT"]`,
+        },
+        {
+          title: "3. filter() — залишає елементи за умовою",
+          codeTitle: "array-filter.js",
+          code: `const clan = [
+    { name: "Олег", power: 920, level: "middle" },
+    { name: "Марія", power: 1450, level: "senior" },
+    { name: "Дмитро", power: 340, level: "junior" },
+    { name: "Софія", power: 780, level: "middle" }
+];
+
+// Тільки сильні воїни
+const strongWarriors = clan.filter(warrior => warrior.power > 700);
+console.log(strongWarriors);`,
+        },
+        {
+          title: "4. find() — знаходить перший відповідний елемент",
+          codeTitle: "array-find.js",
+          code: `const sofia = clan.find(warrior => warrior.name === "Софія");
+console.log(sofia);
+
+const junior = clan.find(w => w.level === "junior");
+console.log(junior);`,
+        },
+        {
+          title: "Порівняння методів",
+          table: {
+            headers: ["Метод", "Повертає", "Змінює оригінал?", "Коли використовувати"],
+            rows: [
+              ["`forEach`", "`undefined`", "Ні", "Просто виконати дію"],
+              ["`map`", "Новий масив", "Ні", "Змінити кожен елемент"],
+              ["`filter`", "Новий масив", "Ні", "Залишити елементи за умовою"],
+              ["`find`", "Один елемент або `undefined`", "Ні", "Знайти конкретний елемент"],
+            ],
+          },
+        },
+        {
+          title: "Практичний приклад",
+          codeTitle: "array-iteration-practice.js",
+          code: `const trainingResults = [85, 92, 67, 78, 95, 55];
+
+const passed = trainingResults.filter(score => score >= 75);
+const average = trainingResults.reduce((sum, score) => sum + score, 0) / trainingResults.length;
+
+console.log("Пройшли тренування:", passed);
+console.log("Середній бал:", average.toFixed(1));`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Попрацюй з таким масивом студентів.",
+          "За допомогою `map()` створи масив тільки з іменами.",
+          "Через `filter()` відбери воїнів з оцінкою `80+`.",
+          "Через `find()` знайди студента з найвищою кількістю годин.",
+          "Через `forEach()` виведи для кожного: `Воїн {ім’я} — {score} балів ⚡`.",
+        ],
+        codeTitle: "students-array.js",
+        code: `const students = [
+    { name: "Владислав", score: 95, hours: 25 },
+    { name: "Анна", score: 87, hours: 18 },
+    { name: "Максим", score: 64, hours: 12 },
+    { name: "Катерина", score: 91, hours: 22 },
+    { name: "Ігор", score: 73, hours: 15 }
+];`,
+        note:
+          "Відмінна робота! ⚡🌳 Тепер ти вмієш професійно працювати з масивами — це дуже потужний інструмент.",
+      },
+    },
+  },
+  {
+    slug: "objects-properties-and-methods",
+    level: "Core",
+    duration: "26 min",
+    title: "Об’єкти — властивості та методи",
+    description:
+      "Двадцять восьмий урок відкриває модуль про об’єкти. Тут ми розбираємо, як групувати пов’язані дані й функції разом та як працювати з властивостями, методами і `this`.",
+    bullets: [
+      "Що таке об’єкт і як він зберігає ключі та значення",
+      "Доступ до властивостей через крапку і квадратні дужки",
+      "Методи об’єкта і використання `this`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 28",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Розібратися з об’єктами — одним з найважливіших типів даних у JavaScript. Об’єкти дозволяють групувати пов’язані дані та функції разом.",
+      sections: [
+        {
+          title: "Що таке об’єкт?",
+          paragraphs: ["Об’єкт — це колекція ключів (властивостей) та їх значень."],
+          codeTitle: "object-basics.js",
+          code: `// === Урок 28 — Об’єкти: властивості та методи ===
+
+const warrior = {
+    name: "Олег Сварожич",
+    age: 26,
+    power: 940,
+    clan: "Сонячний Дуб",
+    isActive: true,
+    skills: ["HTML", "CSS", "JavaScript"]
+};`,
+        },
+        {
+          title: "Доступ до властивостей",
+          codeTitle: "object-properties.js",
+          code: `// 1. Через крапку (dot notation)
+console.log(warrior.name);
+console.log(warrior.power);
+
+// 2. Через квадратні дужки (bracket notation)
+console.log(warrior["age"]);
+console.log(warrior["clan"]);
+
+// Змінюємо значення
+warrior.power = 1250;
+warrior.isActive = false;
+
+// Додаємо нову властивість
+warrior.level = "Middle";
+warrior.title = "Воїн Світла ⚡";
+
+console.log(warrior);`,
+        },
+        {
+          title: "Видалення властивості",
+          codeTitle: "object-delete-property.js",
+          code: `delete warrior.isActive;
+console.log(warrior);`,
+        },
+        {
+          title: "Методи в об’єкті",
+          paragraphs: [
+            "Методи — це функції всередині об’єкта. Усередині таких методів ми часто використовуємо `this`, щоб звернутися до самого об’єкта.",
+          ],
+          codeTitle: "object-methods.js",
+          code: `const warrior = {
+    name: "Марія",
+    power: 870,
+    level: "Middle",
+
+    greet() {
+        console.log(\`⚡ Слава Роду! Я \${this.name}, воїн клану!\`);
+    },
+
+    train(hours) {
+        this.power += hours * 35;
+        console.log(\`\${this.name} потренувався \${hours} годин. Сила тепер: \${this.power}\`);
+    },
+
+    getStatus() {
+        if (this.power > 1200) return "Легенда ⚡";
+        if (this.power > 800) return "Сильний воїн 🌳";
+        return "Молодий паросток 🌱";
+    }
+};
+
+warrior.greet();
+warrior.train(5);
+console.log("Статус:", warrior.getStatus());`,
+        },
+        {
+          title: "Практичний приклад — Профіль воїна",
+          codeTitle: "create-warrior.js",
+          code: `const createWarrior = (name, age) => {
+    return {
+        name,
+        age,
+        power: age * 25,
+        trainedDays: 0,
+
+        train(days) {
+            this.trainedDays += days;
+            this.power += days * 40;
+            console.log(\`🪶 \${this.name} тренувався \${days} днів. Загальна сила: \${this.power}\`);
+        },
+
+        getInfo() {
+            return \`\${this.name} — \${this.getStatus()} | Сила: \${this.power} | Днів тренувань: \${this.trainedDays}\`;
+        },
+
+        getStatus() {
+            return this.power > 1500 ? "Легенда Роду" : "Сильний Воїн";
+        }
+    };
+};
+
+const oleg = createWarrior("Олег", 24);
+oleg.train(12);
+console.log(oleg.getInfo());`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи об’єкт `student` або `warrior`, який має поля `name`, `age`, `currentPower`.",
+          "Додай метод `study(hours)` — він повинен збільшувати силу.",
+          "Додай метод `rest(days)` — він повинен трохи зменшувати силу, але додавати відновлення.",
+          "Додай метод `getFullInfo()` — він повинен повертати повну інформацію про воїна.",
+          "Додай метод `levelUp()` — він повинен підвищувати рівень, якщо сили достатньо.",
+          "Створи 2–3 різних воїнів і потренуй їх.",
+        ],
+        note:
+          "Відмінно! ⚡🌳 Ти тепер розумієш, як працюють об’єкти — фундамент для подальшої роботи з даними.",
+      },
+    },
+  },
+  {
+    slug: "destructuring-arrays-and-objects",
+    level: "Core",
+    duration: "24 min",
+    title: "Деструктуризація масивів та об’єктів",
+    description:
+      "Двадцять дев’ятий урок присвячений деструктуризації — сучасному способу швидко витягувати дані з об’єктів і масивів. Це один з найуживаніших прийомів у сучасному JavaScript і React.",
+    bullets: [
+      "Деструктуризація об’єктів і масивів",
+      "Значення за замовчуванням і перейменування змінних",
+      "Робота з вкладеними структурами та `...rest`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 29",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися сучасному та дуже зручному способу витягування даних з масивів і об’єктів — деструктуризація (Destructuring).",
+      sections: [
+        {
+          title: "1. Деструктуризація об’єктів",
+          codeTitle: "object-destructuring.js",
+          code: `// === Урок 29 — Деструктуризація ===
+
+const warrior = {
+    name: "Ярослав",
+    age: 27,
+    power: 1250,
+    clan: "Сонячний Дуб",
+    title: "Сварожич",
+    skills: ["JS", "React", "Node"]
+};
+
+// Старий спосіб
+// const name = warrior.name;
+// const power = warrior.power;
+
+// Новий сучасний спосіб — деструктуризація
+const { name, power, clan, title } = warrior;
+
+console.log(name);   // Ярослав
+console.log(power);  // 1250
+console.log(clan);   // Сонячний Дуб`,
+        },
+        {
+          title: "Значення за замовчуванням і перейменування",
+          codeTitle: "destructuring-defaults.js",
+          code: `const { 
+    name: warriorName, 
+    power: currentPower = 500, 
+    level = "Junior" 
+} = warrior;
+
+console.log(warriorName);    // Ярослав
+console.log(currentPower);   // 1250
+console.log(level);          // Junior (якщо немає в об'єкті)`,
+        },
+        {
+          title: "2. Деструктуризація масивів",
+          codeTitle: "array-destructuring.js",
+          code: `const skills = ["HTML", "CSS", "JavaScript", "React", "TypeScript"];
+
+const [first, second, third] = skills;
+
+console.log(first);  // HTML
+console.log(second); // CSS
+console.log(third);  // JavaScript
+
+// Пропуск елементів
+const [, , , fourth, fifth] = skills;
+console.log(fourth); // React`,
+        },
+        {
+          title: "3. Практичний приклад",
+          codeTitle: "destructuring-practice.js",
+          code: `const createWarriorProfile = () => {
+    return {
+        name: "Софія",
+        age: 24,
+        stats: {
+            power: 980,
+            wisdom: 650,
+            speed: 720
+        },
+        skills: ["JavaScript", "React", "Tailwind"]
+    };
+};
+
+const { 
+    name, 
+    stats: { power, wisdom }, 
+    skills: [mainSkill, ...otherSkills] 
+} = createWarriorProfile();
+
+console.log(\`Воїн: \${name}\`);
+console.log(\`Сила: \${power}, Мудрість: \${wisdom}\`);
+console.log(\`Головний скіл: \${mainSkill}\`);
+console.log(\`Інші скіли: \${otherSkills}\`);`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "Деструктуризацію можна використовувати і в параметрах функцій.",
+            "`...rest` збирає всі залишкові елементи в масив.",
+            "Деструктуризація сильно спрощує роботу з об’єктами та масивами.",
+            "Це один з найпопулярніших сучасних прийомів у JavaScript.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Попрацюй з таким об’єктом `student`.",
+          "Витягни `fullName`, `course`, `powerLevel` через деструктуризацію.",
+          "Витягни перший `achievement` в окрему змінну, а решту — в масив `otherAchievements`.",
+          "Створи функцію `showWarriorInfo({ fullName, progress: { powerLevel }, achievements })`, яка красиво виводить інформацію.",
+        ],
+        codeTitle: "student-destructuring.js",
+        code: `const student = {
+    fullName: "Дмитро Вітрович",
+    age: 23,
+    course: "JavaScript",
+    progress: {
+        lessonsCompleted: 28,
+        totalLessons: 42,
+        powerLevel: 890
+    },
+    achievements: ["Перша функція", "Перша гра", "Масиви"]
+};`,
+        note:
+          "Чудово! ⚡🌳 Деструктуризація — це той інструмент, який робить код набагато чистішим і сучаснішим.",
+      },
+    },
+  },
+  {
+    slug: "spread-and-rest-operators",
+    level: "Core",
+    duration: "24 min",
+    title: "Spread та Rest оператор (...)",
+    description:
+      "Тридцятий урок присвячений оператору `...` — одному з найзручніших інструментів сучасного JavaScript. Він допомагає об’єднувати масиви, клонувати об’єкти та збирати довільну кількість аргументів у функціях.",
+    bullets: [
+      "Spread для масивів і об’єктів",
+      "Rest для параметрів функцій і деструктуризації",
+      "Практика з клонуванням і динамічними аргументами",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 30",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Освоїти один з найпотужніших і найзручніших інструментів сучасного JavaScript — оператор `...` (spread та rest).",
+      sections: [
+        {
+          title: "1. Spread (...) — \"розпилення\"",
+          paragraphs: [
+            "Spread використовується в правій частині виразу. Він розгортає масив або об’єкт на окремі елементи чи властивості.",
+          ],
+        },
+        {
+          title: "Для масивів",
+          codeTitle: "spread-arrays.js",
+          code: `// === Урок 30 — Spread та Rest ===
+
+const oldSkills = ["HTML", "CSS", "JavaScript"];
+const newSkills = ["React", "TypeScript", "Tailwind"];
+
+// Об'єднуємо масиви
+const allSkills = [...oldSkills, ...newSkills, "Git", "Next.js"];
+
+console.log(allSkills);`,
+        },
+        {
+          title: "Для об’єктів",
+          codeTitle: "spread-objects.js",
+          code: `const baseWarrior = {
+    name: "Олег",
+    clan: "Сонячний Дуб",
+    power: 750
+};
+
+const upgradedWarrior = {
+    ...baseWarrior,
+    power: 1250,
+    level: "Middle",
+    title: "Сварожич ⚡"
+};
+
+console.log(upgradedWarrior);`,
+        },
+        {
+          title: "2. Rest (...) — \"збір залишків\"",
+          paragraphs: [
+            "Rest працює в лівій частині присвоєння або в параметрах функції. Він збирає кілька значень в один масив.",
+          ],
+          codeTitle: "rest-parameters.js",
+          code: `// Збирає всі аргументи в масив
+function showSkills(name, ...skills) {
+    console.log(\`Воїн: \${name}\`);
+    console.log("Навички:", skills);
+}
+
+showSkills("Марія", "JavaScript", "React", "Node.js", "English");`,
+        },
+        {
+          title: "Rest у деструктуризації",
+          codeTitle: "rest-destructuring.js",
+          code: `const [first, second, ...restSkills] = ["HTML", "CSS", "JS", "React", "Node", "Git"];
+
+console.log(first);      // HTML
+console.log(second);     // CSS
+console.log(restSkills); // ["JS", "React", "Node", "Git"]`,
+        },
+        {
+          title: "Практичні приклади",
+          codeTitle: "spread-rest-practice.js",
+          code: `// 1. Клонування об'єкта (глибоке копіювання на поверхневому рівні)
+const warrior = { name: "Софія", power: 980 };
+const newWarrior = { ...warrior, power: 1350 };
+
+// 2. Функція з будь-якою кількістю параметрів
+const calculateTotalPower = (...powers) => {
+    return powers.reduce((total, power) => total + power, 0);
+};
+
+console.log(calculateTotalPower(340, 560, 890, 420));`,
+        },
+        {
+          title: "Важливі правила",
+          bullets: [
+            "`...` у лівій частині присвоєння означає Rest — він збирає значення.",
+            "`...` у правій частині означає Spread — він розгортає значення.",
+            "Spread не робить глибоке клонування для вкладених об’єктів і масивів.",
+            "Цей оператор дуже часто використовується в React і сучасному JavaScript загалом.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи масив `baseSkills = [\"HTML\", \"CSS\", \"JavaScript\"]`.",
+          "Створи новий масив `fullStack`, який містить усі `baseSkills` і додатково `React`, `Node.js`, `PostgreSQL`, `Docker`.",
+          "Створи об’єкт `warriorProfile` і клонуй його з додаванням нових властивостей `level` та `achievements`.",
+          "Напиши функцію `addToClan(clanName, ...warriors)`, яка виводить: `До клану ${clanName} приєднались: ...`.",
+          "Бонус: використай spread і rest разом в одній функції.",
+        ],
+        codeTitle: "spread-rest-homework.js",
+        code: `const baseSkills = ["HTML", "CSS", "JavaScript"];
+
+const fullStack = [...baseSkills, "React", "Node.js", "PostgreSQL", "Docker"];
+
+const warriorProfile = {
+    name: "Ярослав",
+    power: 920,
+    clan: "Сонячний Дуб"
+};
+
+function addToClan(clanName, ...warriors) {
+    console.log(\`До клану \${clanName} приєднались: \${warriors.join(", ")}\`);
+}`,
+        note:
+          "Сильна робота! ⚡🌳 Оператор `...` — це той інструмент, без якого сучасний JavaScript уже важко уявити.",
+      },
+    },
+  },
+  {
+    slug: "json-and-working-with-it",
+    level: "Core",
+    duration: "22 min",
+    title: "JSON та робота з ним",
+    description:
+      "Тридцять перший урок присвячений JSON — найпоширенішому формату обміну даними у веб-розробці. Тут ми розберемо, як перетворювати об’єкти в JSON-рядки і назад.",
+    bullets: [
+      "Що таке JSON і як він виглядає",
+      "Робота з `JSON.parse()` та `JSON.stringify()`",
+      "Практика з об’єктами, масивами і даними для API",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 31",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися працювати з JSON — найпопулярнішим форматом обміну даними в сучасній веб-розробці.",
+      sections: [
+        {
+          title: "Що таке JSON?",
+          paragraphs: [
+            "JSON (JavaScript Object Notation) — це текстовий формат для зберігання та передачі даних. На вигляд він дуже схожий на об’єкти JavaScript, але насправді це просто текст.",
+          ],
+          codeTitle: "json-basics.js",
+          code: `// === Урок 31 — JSON ===
+
+// 1. JSON — це просто рядок
+const jsonString = \`{
+    "name": "Ярослав",
+    "age": 26,
+    "clan": "Сонячний Дуб",
+    "power": 980,
+    "skills": ["JavaScript", "React", "Node.js"],
+    "isActive": true
+}\`;`,
+        },
+        {
+          title: "Основні методи роботи з JSON",
+          codeTitle: "json-methods.js",
+          code: `// 1. JSON.parse() — перетворює JSON-рядок в об'єкт
+const warrior = JSON.parse(jsonString);
+
+console.log(warrior.name);
+console.log(warrior.skills[1]); // React
+
+// 2. JSON.stringify() — перетворює об'єкт в JSON-рядок
+const newWarrior = {
+    name: "Софія",
+    age: 24,
+    power: 1150,
+    title: "Сварожичка"
+};
+
+const jsonData = JSON.stringify(newWarrior, null, 2); // 2 — відступ для краси
+console.log(jsonData);`,
+        },
+        {
+          title: "Практичний приклад",
+          codeTitle: "json-practice.js",
+          code: `const clanData = {
+    clanName: "Світлі Сварожичі",
+    members: [
+        { name: "Олег", power: 1250, role: "Middle" },
+        { name: "Марія", power: 980, role: "Junior" },
+        { name: "Дмитро", power: 1580, role: "Senior" }
+    ],
+    totalPower: 3810,
+    motto: "Сила в єдності ⚡"
+};
+
+// Перетворюємо в JSON (наприклад, для відправки на сервер)
+const jsonForServer = JSON.stringify(clanData, null, 2);
+console.log(jsonForServer);
+
+// Отримуємо назад з сервера
+const receivedData = JSON.parse(jsonForServer);
+console.log("Клан:", receivedData.clanName);
+console.log("Найсильніший воїн:", receivedData.members[2]);`,
+        },
+        {
+          title: "Важливі моменти",
+          bullets: [
+            "JSON використовує подвійні лапки для ключів і рядків.",
+            "У JSON немає функцій, `undefined`, `Date` та інших спеціальних типів JavaScript.",
+            "`JSON.stringify()` і `JSON.parse()` — два головні методи для роботи з JSON.",
+            "JSON дуже часто використовується при роботі з API та `fetch`.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи об’єкт `yourProfile` з полями `name`, `age`, `skills`, `powerLevel`, `achievements`.",
+          "Перетвори його в JSON-рядок через `JSON.stringify()`.",
+          "Розпарси цей рядок назад в об’єкт через `JSON.parse()`.",
+          "Виведи красиве повідомлення з цими даними.",
+          "Бонус: створи функції `saveWarrior(warrior)` і `loadWarrior(jsonString)`.",
+        ],
+        codeTitle: "json-homework.js",
+        code: `const yourProfile = {
+    name: "Владислав",
+    age: 22,
+    skills: ["HTML", "CSS", "JavaScript"],
+    powerLevel: 780,
+    achievements: ["Перший сайт", "Перша гра", "Функції"]
+};
+
+function saveWarrior(warrior) {
+    return JSON.stringify(warrior, null, 2);
+}
+
+function loadWarrior(jsonString) {
+    return JSON.parse(jsonString);
+}`,
+        note:
+          "Молодець! ⚡🌳 Тепер ти вмієш працювати з даними у форматі, який використовується майже скрізь у веб-розробці.",
+      },
+    },
+  },
 ];
 
 export function getLessonBySlug(slug: string) {
