@@ -1974,7 +1974,7 @@ while (attemptsLeft > 0) {
     content: {
       video: {
         title: "Відео до уроку 19",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/ZplJ_7E_PpA",
       },
       goal:
         "Навчитися створювати власні функції — це один з найважливіших кроків у програмуванні. Функції дозволяють повторно використовувати код і робити його чистим та організованим.",
@@ -2070,7 +2070,7 @@ console.log(getAgeStatus(16));`,
     content: {
       video: {
         title: "Відео до уроку 20",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/tupGmkaUOHw",
       },
       goal:
         "Розібратися з альтернативними способами створення функцій та зрозуміти, коли який спосіб краще використовувати.",
