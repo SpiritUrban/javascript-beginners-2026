@@ -134,7 +134,13 @@ export function HomePage() {
             <Badge>JavaScript Для Початківців 2026</Badge>
 
             <div className="space-y-4">
-              <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+              <h1
+                className="max-w-4xl text-4xl font-bold leading-tight tracking-tight sm:text-5xl"
+                style={{
+                  textShadow:
+                    "0 1px 0 rgba(7, 12, 22, 0.9), 0 0 1px rgba(7, 12, 22, 0.95), 0 0 14px rgba(34, 211, 238, 0.08)",
+                }}
+              >
                 Практичний курс з нуля до перших інтерактивних веб-проєктів.
               </h1>
               <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
@@ -274,7 +280,15 @@ export function HomePage() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">{title}</h3>
+                    <h3
+                      className="text-xl font-semibold"
+                      style={{
+                        textShadow:
+                          "0 1px 0 rgba(7, 12, 22, 0.9), 0 0 1px rgba(7, 12, 22, 0.95), 0 0 14px rgba(34, 211, 238, 0.08)",
+                      }}
+                    >
+                      {title}
+                    </h3>
                     <div className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
                       {range}
                     </div>
@@ -321,7 +335,15 @@ export function HomePage() {
                   {lesson.duration}
                 </span>
               </div>
-              <h3 className="mb-2 text-2xl font-semibold">{lesson.title}</h3>
+              <h3
+                className="mb-2 text-2xl font-semibold"
+                style={{
+                  textShadow:
+                    "0 1px 0 rgba(7, 12, 22, 0.9), 0 0 1px rgba(7, 12, 22, 0.95), 0 0 14px rgba(34, 211, 238, 0.08)",
+                }}
+              >
+                {lesson.title}
+              </h3>
               <p className="mb-5 leading-7 text-muted-foreground">{lesson.description}</p>
               <Button asChild variant="secondary">
                 <Link to={`/lessons/${lesson.slug}`}>Відкрити урок</Link>
