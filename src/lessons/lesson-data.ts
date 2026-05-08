@@ -1639,7 +1639,7 @@ alert(result);`,
     content: {
       video: {
         title: "Відео до уроку 16",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/IjBCAprEhao",
       },
       goal:
         "Навчитися повторювати код кілька разів за допомогою циклів — це основа для роботи зі списками, іграми, анімаціями та багатьма іншими задачами.",
@@ -1742,7 +1742,7 @@ do {
     content: {
       video: {
         title: "Відео до уроку 17",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/SyDnYlE4X6w",
       },
       goal:
         "Навчитися найпопулярнішому циклу `for` та сучасному `for...of` — це найчастіше використовувані цикли в JavaScript.",
@@ -1854,7 +1854,7 @@ for (let i = 1; i <= 20; i++) {
     content: {
       video: {
         title: "Відео до уроку 18",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/BL7I00PKIpA",
       },
       goal:
         "Закріпити цикли на практиці, створивши веселі та корисні міні-ігри.",
