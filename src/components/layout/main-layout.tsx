@@ -55,9 +55,9 @@ export function MainLayout({ children }: PropsWithChildren) {
 
         <footer className="mt-12 border-t border-white/10 px-1 py-6 text-sm text-muted-foreground">
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <p>Vite + React + TypeScript + TailwindCSS + HashRouter</p>
+            <p>JavaScript для початківців 2026. Практичний курс українською мовою.</p>
             <p className="font-mono text-xs uppercase tracking-[0.22em]">
-              build target: /docs
+              42 lessons • practice-first
             </p>
           </div>
         </footer>
