@@ -3422,6 +3422,1166 @@ function loadWarrior(jsonString) {
       },
     },
   },
+  {
+    slug: "todo-list-practice",
+    level: "Core",
+    duration: "28 min",
+    title: "Практика — TODO-лист (на масивах та об’єктах)",
+    description:
+      "Тридцять другий урок збирає воєдино масиви, об’єкти, функції, методи та деструктуризацію в реальний невеликий проєкт — власний TODO List на чистому JavaScript.",
+    bullets: [
+      "Практика на масивах і об’єктах",
+      "Методи `add`, `complete`, `delete`, `filter`, `stats`",
+      "Перший мініпроєкт з реальним сценарієм використання",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 32",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Зібрати всі знання про масиви, об’єкти, функції та деструктуризацію в реальний невеликий проєкт — Todo List.",
+      sections: [
+        {
+          title: "Код проєкту",
+          codeTitle: "todo-list.js",
+          code: `// === Урок 32 — TODO List ===
+
+const todoList = {
+    tasks: [],
+
+    addTask(text) {
+        const newTask = {
+            id: Date.now(),
+            text: text,
+            completed: false,
+            createdAt: new Date().toLocaleString("uk-UA")
+        };
+        this.tasks.push(newTask);
+        console.log(\`✅ Завдання додано: "\${text}"\`);
+    },
+
+    completeTask(id) {
+        const task = this.tasks.find(t => t.id === id);
+        if (task) {
+            task.completed = true;
+            console.log(\`✅ Виконано: "\${task.text}"\`);
+        }
+    },
+
+    deleteTask(id) {
+        const index = this.tasks.findIndex(t => t.id === id);
+        if (index !== -1) {
+            const deleted = this.tasks.splice(index, 1)[0];
+            console.log(\`🗑️ Видалено: "\${deleted.text}"\`);
+        }
+    },
+
+    showTasks(filter = "all") {
+        console.log(\`\\n📋 Твої завдання (\${filter}):\`);
+
+        const filtered = this.tasks.filter(task => {
+            if (filter === "active") return !task.completed;
+            if (filter === "completed") return task.completed;
+            return true; // all
+        });
+
+        if (filtered.length === 0) {
+            console.log("Поки що завдань немає 🌱");
+            return;
+        }
+
+        filtered.forEach(task => {
+            const status = task.completed ? "✅" : "⬜";
+            console.log(\`\${status} \${task.id} — \${task.text} (\${task.createdAt})\`);
+        });
+    },
+
+    getStats() {
+        const total = this.tasks.length;
+        const completed = this.tasks.filter(t => t.completed).length;
+        console.log(\`\\n📊 Статистика: \${completed}/\${total} виконано\`);
+    }
+};
+
+// ====================== ТЕСТУЄМО ======================
+
+todoList.addTask("Вивчити деструктуризацію");
+todoList.addTask("Зробити TODO-лист");
+todoList.addTask("Повторити методи масивів");
+todoList.addTask("Написати гру");
+
+todoList.showTasks();
+
+todoList.completeTask(todoList.tasks[1].id);
+
+todoList.showTasks("active");
+todoList.getStats();`,
+        },
+        {
+          title: "Що тут практикуємо",
+          bullets: [
+            "Масив `tasks` для зберігання завдань.",
+            "Об’єкт `todoList` з методами для роботи зі списком.",
+            "Пошук елементів через `find()` і `findIndex()`.",
+            "Фільтрацію завдань через `filter()`.",
+            "Перебір через `forEach()` і базову статистику.",
+          ],
+        },
+        {
+          title: "Ключова ідея проєкту",
+          paragraphs: [
+            "Це вже не окремі відірвані приклади, а цілісний об’єкт зі станом і поведінкою. Саме з таких невеликих систем і починається реальна розробка.",
+          ],
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Додай метод `editTask(id, newText)`.",
+          "Додай метод `clearCompleted()` — видаляє всі виконані завдання.",
+          "Зроби функцію `addMultipleTasks(...texts)` — додає одразу кілька завдань.",
+          "Покажи фінальний список через `showTasks()`.",
+          "Спробуй зробити кілька різних списків: `workList`, `studyList`, `personalList`.",
+        ],
+        note:
+          "Готово! Це вже реальний маленький проєкт. Ти молодець!",
+      },
+    },
+  },
+  {
+    slug: "intro-to-dom",
+    level: "Core",
+    duration: "24 min",
+    title: "Вступ до DOM (Document Object Model)",
+    description:
+      "Тридцять третій урок відкриває новий модуль про роботу зі сторінкою. Тут ми знайомимося з DOM — містком між JavaScript і HTML.",
+    bullets: [
+      "Що таке DOM і як браузер бачить HTML",
+      "Пошук елементів через `getElementById` і `querySelector`",
+      "Зміна тексту, стилів, класів і атрибутів",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 33",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Познайомитися з DOM — це місток між JavaScript і HTML-сторінкою. Саме завдяки DOM ми можемо змінювати сторінку динамічно.",
+      sections: [
+        {
+          title: "Що таке DOM?",
+          paragraphs: [
+            "DOM — це об’єктна модель документа. Браузер перетворює HTML у дерево об’єктів, з якими ми можемо працювати через JavaScript.",
+          ],
+          codeTitle: "index.html",
+          code: `<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 33 - DOM</title>
+</head>
+<body>
+    <h1 id="title">Слава Роду! 🌳</h1>
+    <p class="description">Це перший урок роботи з DOM</p>
+    <button id="btn">Натисни мене</button>
+
+    <script src="script.js"></script>
+</body>
+</html>`,
+        },
+        {
+          title: "Основні способи пошуку елементів",
+          codeTitle: "script.js",
+          code: `// === Урок 33 — Вступ до DOM ===
+
+const title = document.getElementById("title");
+const paragraph = document.querySelector(".description");
+const button = document.querySelector("#btn");
+
+// Працюємо з елементом
+console.log(title.textContent);
+
+title.textContent = "Я тепер змінюю сторінку через JavaScript! ⚡";
+title.style.color = "#ffcc00";
+title.style.fontSize = "2.5rem";`,
+        },
+        {
+          title: "Найважливіші методи",
+          codeTitle: "dom-methods.js",
+          code: `// 1. querySelector — найуніверсальніший
+const firstParagraph = document.querySelector("p");
+
+// 2. querySelectorAll — повертає всі елементи (NodeList)
+const allParagraphs = document.querySelectorAll("p");
+
+// 3. Робота з класами
+button.classList.add("active");
+button.classList.remove("active");
+button.classList.toggle("active");
+
+// 4. Зміна атрибутів
+button.setAttribute("disabled", true);`,
+        },
+        {
+          title: "Практичний приклад",
+          codeTitle: "dom-practice.js",
+          code: `const btn = document.querySelector("#btn");
+
+btn.addEventListener("click", () => {
+    const newElement = document.createElement("p");
+    newElement.textContent = "Новий параграф створений через JavaScript 🌿";
+    newElement.style.color = "#4ade80";
+
+    document.body.appendChild(newElement);
+});`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи на сторінці заголовок `h1`, параграф і кнопку `Змінити тему`.",
+          "При натисканні на кнопку зміни текст заголовка.",
+          "Зміни колір фону `body`.",
+          "Додай новий елемент з мотиваційним текстом.",
+          "Додай ще одну кнопку `Скинути зміни`.",
+        ],
+        note:
+          "Готово! Тепер ти можеш взаємодіяти зі сторінкою — це вже справжня фронтенд-розробка.",
+      },
+    },
+  },
+  {
+    slug: "changing-text-styles-and-attributes",
+    level: "Core",
+    duration: "24 min",
+    title: "Зміна тексту, стилів та атрибутів",
+    description:
+      "Тридцять четвертий урок показує, як динамічно змінювати текст, HTML, inline-стилі, класи та атрибути елементів сторінки через JavaScript.",
+    bullets: [
+      "Різниця між `textContent` та `innerHTML`",
+      "Зміна стилів, класів і атрибутів",
+      "Практика з кнопками зміни теми та скидання стану",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 34",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися динамічно змінювати вміст, стилі та атрибути елементів на сторінці.",
+      sections: [
+        {
+          title: "Практичний код",
+          codeTitle: "dom-updates.js",
+          code: `// === Урок 34 — Зміна тексту, стилів, атрибутів ===
+
+const title = document.querySelector("#title");
+const description = document.querySelector(".description");
+const btn = document.querySelector("#btn");
+const image = document.querySelector("#warrior-img");
+
+// 1. Зміна тексту
+title.textContent = "Я змінився через JavaScript! ⚡";
+title.innerHTML = "Я змінився через JavaScript! <span style='color:#fbbf24'>Слава Сварогу!</span>";
+
+// 2. Зміна стилів
+function changeTheme() {
+    document.body.style.backgroundColor = "#1a1a2e";
+    document.body.style.color = "#e0f2fe";
+
+    title.style.color = "#67e8f9";
+    title.style.fontSize = "3rem";
+    title.style.textShadow = "0 0 20px #67e8f9";
+}
+
+// 3. Робота з класами (найкращий спосіб)
+btn.classList.add("active");
+btn.classList.toggle("active");
+
+// 4. Зміна атрибутів
+image.setAttribute("src", "https://i.imgur.com/example.jpg");
+image.setAttribute("alt", "Воїн Сварога");
+
+// 5. Видалення атрибуту
+// image.removeAttribute("alt");`,
+        },
+        {
+          title: "Повний приклад з кнопками",
+          codeTitle: "dom-buttons.js",
+          code: `const btnChange = document.querySelector("#change");
+const btnReset = document.querySelector("#reset");
+
+btnChange.addEventListener("click", () => {
+    title.textContent = "Ти на шляху до майстерності!";
+    title.style.color = "#a5f3fc";
+    document.body.style.background = "linear-gradient(135deg, #1e2937, #334155)";
+});
+
+btnReset.addEventListener("click", () => {
+    title.textContent = "Слава Роду! 🌳";
+    title.style.color = "";
+    document.body.style.background = "";
+});`,
+        },
+        {
+          title: "Важливі методи",
+          table: {
+            headers: ["Метод", "Що робить"],
+            rows: [
+              ["`textContent`", "Змінює текст без вставки HTML"],
+              ["`innerHTML`", "Змінює HTML і дозволяє вставляти теги"],
+              ["`classList.add()`", "Додає клас елементу"],
+              ["`classList.remove()`", "Видаляє клас"],
+              ["`classList.toggle()`", "Перемикає клас увімкнено/вимкнено"],
+              ["`setAttribute()`", "Змінює або додає атрибут"],
+              ["`style.property`", "Змінює inline-стилі елемента"],
+            ],
+          },
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи інтерактивну сторінку з трьома кнопками.",
+          "Кнопка `Змінити тему` повинна перемикати темну і світлу тему.",
+          "Кнопка `Підняти силу` повинна збільшувати розмір заголовка і змінювати його текст.",
+          "Кнопка `Скинути все` повинна повертати початковий стан.",
+          "Додай красиві стилі через `classList`.",
+        ],
+        note:
+          "Спробуй робити акцент саме на класах, а не тільки на inline-стилях — це ближче до реальної фронтенд-розробки.",
+      },
+    },
+  },
+  {
+    slug: "creating-and-removing-elements",
+    level: "Core",
+    duration: "25 min",
+    title: "Створення та видалення елементів",
+    description:
+      "Тридцять п’ятий урок присвячений динамічному керуванню HTML-структурою: створенню нових елементів, вставці їх у DOM і видаленню зі сторінки.",
+    bullets: [
+      "Створення елементів через `document.createElement()`",
+      "Додавання через `appendChild`, `append`, `prepend`",
+      "Видалення елементів і побудова інтерактивного списку",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 35",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися динамічно створювати, додавати та видаляти HTML-елементи через JavaScript.",
+      sections: [
+        {
+          title: "Основні методи",
+          codeTitle: "create-elements.js",
+          code: `// === Урок 35 — Створення та видалення елементів ===
+
+const container = document.querySelector(".tasks-container");
+
+// 1. Створення нового елемента
+const newTask = document.createElement("div");
+newTask.classList.add("task-item");
+newTask.innerHTML = \`
+    <span>Вивчити методи DOM</span>
+    <button class="delete-btn">🗑️</button>
+\`;
+
+// 2. Додавання на сторінку
+container.appendChild(newTask);
+// container.prepend(newTask);
+// container.insertBefore(newTask, firstChild);`,
+        },
+        {
+          title: "Повний практичний приклад",
+          codeTitle: "dynamic-tasks.js",
+          code: `function addNewTask(text) {
+    const taskEl = document.createElement("div");
+    taskEl.className = "task-item flex justify-between items-center p-4 bg-slate-800 rounded-xl mb-3";
+
+    taskEl.innerHTML = \`
+        <span class="text-lg">\${text}</span>
+        <button class="delete-btn text-red-400 hover:text-red-500 text-2xl">🗑️</button>
+    \`;
+
+    // Видалення елемента
+    taskEl.querySelector(".delete-btn").addEventListener("click", () => {
+        taskEl.remove();
+        // або taskEl.parentNode.removeChild(taskEl);
+    });
+
+    document.querySelector(".tasks-container").appendChild(taskEl);
+}
+
+// Використання
+addNewTask("Зробити домашнє завдання");
+addNewTask("Повторити деструктуризацію");`,
+        },
+        {
+          title: "Важливі методи створення та видалення",
+          table: {
+            headers: ["Метод", "Що робить"],
+            rows: [
+              ["`document.createElement()`", "Створює новий HTML-елемент"],
+              ["`appendChild()` / `append()`", "Додає елемент у кінець контейнера"],
+              ["`prepend()`", "Додає елемент на початок контейнера"],
+              ["`insertBefore()`", "Вставляє елемент перед конкретним вузлом"],
+              ["`element.remove()`", "Видаляє елемент зі сторінки"],
+              ["`innerHTML = \"\"`", "Очищає весь вміст контейнера"],
+            ],
+          },
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи інтерактивний TODO-лист з полем вводу і кнопкою `Додати`.",
+          "При натисканні повинно створюватися нове завдання.",
+          "У кожного завдання зроби кнопку видалення `🗑️`.",
+          "При натисканні на текст завдання воно має відмічатися як виконане через клас `completed`.",
+          "Бонус: додай лічильник завдань і кнопку `Видалити всі`.",
+        ],
+        note:
+          "Готово! Тепер ти можеш повністю керувати структурою сторінки через JavaScript.",
+      },
+    },
+  },
+  {
+    slug: "working-with-classes-classlist",
+    level: "Core",
+    duration: "22 min",
+    title: "Робота з класами (classList)",
+    description:
+      "Тридцять шостий урок присвячений `classList` — одному з найважливіших DOM-інструментів для керування станами, темами, анімаціями та виглядом елементів.",
+    bullets: [
+      "Методи `add`, `remove`, `toggle`, `contains`, `replace`",
+      "Робота з темами і візуальними станами елементів",
+      "Практика з карткою і перемиканням класів",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 36",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися професійно працювати з CSS-класами через JavaScript — це найправильніший і найзручніший спосіб змінювати зовнішній вигляд елементів.",
+      sections: [
+        {
+          title: "Основні методи classList",
+          codeTitle: "classlist-basics.js",
+          code: `// === Урок 36 — classList ===
+
+const card = document.querySelector(".warrior-card");
+const btn = document.querySelector("#toggle-btn");
+
+// 1. Додавання класу
+card.classList.add("active", "glow");
+
+// 2. Видалення класу
+card.classList.remove("glow");
+
+// 3. Перемикання (найчастіше використовується)
+btn.addEventListener("click", () => {
+    card.classList.toggle("active");
+});
+
+// 4. Перевірка наявності класу
+if (card.classList.contains("active")) {
+    console.log("Картка активна ⚡");
+}
+
+// 5. Заміна одного класу на інший
+card.classList.replace("old-theme", "new-theme");`,
+        },
+        {
+          title: "Практичний приклад — Темна/Світла тема + Анімація",
+          codeTitle: "classlist-theme.js",
+          code: `const body = document.body;
+const themeBtn = document.querySelector("#theme-btn");
+
+themeBtn.addEventListener("click", () => {
+    body.classList.toggle("dark");
+
+    if (body.classList.contains("dark")) {
+        themeBtn.textContent = "☀️ Світла тема";
+    } else {
+        themeBtn.textContent = "🌙 Темна тема";
+    }
+});`,
+        },
+        {
+          title: "CSS (приклад стилів)",
+          codeTitle: "styles.css",
+          code: `.warrior-card {
+    transition: all 0.4s ease;
+}
+
+.warrior-card.active {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(103, 232, 249, 0.6);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.dark {
+    background-color: #0f172a;
+    color: #e0f2fe;
+}`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи інтерактивну картку воїна.",
+          "Кнопка `Підняти рівень` повинна додавати клас `level-up`.",
+          "Кнопка `Змінити тему` повинна перемикати темну і світлу тему на всій сторінці.",
+          "Кнопка `Активувати силу` повинна додавати або прибирати клас `power-active` з анімацією.",
+          "При натисканні на саму картку вона повинна `toggle` клас `selected`.",
+          "Додай плавні `transition` у CSS.",
+        ],
+        note:
+          "`classList` — це один з найчастіше використовуваних інструментів при роботі з DOM, тому його варто довести до автоматизму.",
+      },
+    },
+  },
+  {
+    slug: "interactive-elements-practice",
+    level: "Core",
+    duration: "28 min",
+    title: "Практика — інтерактивні елементи (кольори, лічильник)",
+    description:
+      "Тридцять сьомий урок зводить разом DOM, події, стилі та класи у кілька маленьких, але дуже живих інтерактивних елементів: лічильник, зміну кольорів фону та картку з поведінкою при кліку й наведенні.",
+    bullets: [
+      "Лічильник із кнопками `+`, `-` і `Reset`",
+      "Циклічна зміна кольорів фону через JavaScript",
+      "Інтерактивна картка з `classList`, hover-ефектами і transition",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 37",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Закріпити роботу з DOM через створення кількох веселих і корисних інтерактивних елементів.",
+      sections: [
+        {
+          title: "Лічильник (Counter)",
+          codeTitle: "counter.js",
+          code: `const countEl = document.getElementById("count");
+const incrementBtn = document.getElementById("increment");
+const decrementBtn = document.getElementById("decrement");
+const resetBtn = document.getElementById("reset");
+
+let count = 0;
+
+incrementBtn.addEventListener("click", () => {
+    count++;
+    countEl.textContent = count;
+    countEl.style.color = count > 0 ? "#4ade80" : "#fff";
+});
+
+decrementBtn.addEventListener("click", () => {
+    count--;
+    countEl.textContent = count;
+    countEl.style.color = count < 0 ? "#f87171" : "#fff";
+});
+
+resetBtn.addEventListener("click", () => {
+    count = 0;
+    countEl.textContent = count;
+    countEl.style.color = "#fff";
+});`,
+        },
+        {
+          title: "Зміна кольорів фону (Color Changer)",
+          codeTitle: "color-changer.js",
+          code: `const body = document.body;
+const colors = ["#0f172a", "#1e2937", "#312e81", "#4338ca", "#1e40af", "#164e63"];
+
+let currentIndex = 0;
+
+document.getElementById("changeColor").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % colors.length;
+    body.style.backgroundColor = colors[currentIndex];
+
+    // Додаємо плавну анімацію
+    body.style.transition = "background-color 0.6s ease";
+});`,
+        },
+        {
+          title: "Інтерактивна картка воїна",
+          codeTitle: "warrior-card.js",
+          code: `const card = document.querySelector(".warrior-card");
+
+card.addEventListener("click", () => {
+    card.classList.toggle("power-mode");
+});
+
+card.addEventListener("mouseenter", () => {
+    card.style.transform = "scale(1.08) rotate(2deg)";
+});
+
+card.addEventListener("mouseleave", () => {
+    card.style.transform = "scale(1) rotate(0deg)";
+});`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи сторінку з лічильником тренувань і кнопками `+1`, `-1`, `Reset`.",
+          "Додай кнопку, яка циклічно змінює колір фону сторінки.",
+          "Створи інтерактивну картку воїна, яка при натисканні збільшується і змінює колір.",
+          "При наведенні миші картка повинна трохи повертатися і плавно анімуватися.",
+          "Зроби все акуратно через `transition`, щоб інтерфейс виглядав живо й сучасно.",
+        ],
+        note:
+          "Це вже дуже близько до справжніх UI-взаємодій: маленькі механіки, але саме з них складається жива фронтенд-сторінка.",
+      },
+    },
+  },
+  {
+    slug: "event-handling-add-event-listener",
+    level: "Core",
+    duration: "24 min",
+    title: "Обробка подій (addEventListener)",
+    description:
+      "Тридцять восьмий урок відкриває модуль подій і показує, як сайт починає реагувати на користувача: на кліки, наведення, натискання клавіш і введення тексту.",
+    bullets: [
+      "Базова робота з `addEventListener()`",
+      "Поширені DOM-події: `click`, `dblclick`, `mouseenter`, `mouseleave`, `keydown`",
+      "Об'єкт `event` і практичний приклад з лічильником кліків",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 38",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися правильно обробляти події користувача: кліки, наведення, введення тексту тощо.",
+      sections: [
+        {
+          title: "Основний спосіб — addEventListener",
+          codeTitle: "event-basics.js",
+          code: `// === Урок 38 — Обробка подій ===
+
+const btn = document.querySelector("#myBtn");
+const output = document.querySelector("#output");
+
+// Найпростіший варіант
+btn.addEventListener("click", () => {
+    output.textContent = "Кнопку натиснуто! ⚡";
+    output.style.color = "#4ade80";
+});`,
+        },
+        {
+          title: "Поширені події",
+          codeTitle: "common-events.js",
+          code: `const box = document.querySelector(".interactive-box");
+
+// Клік
+box.addEventListener("click", () => console.log("Клік!"));
+
+// Подвійний клік
+box.addEventListener("dblclick", () => console.log("Подвійний клік!"));
+
+// Наведення миші
+box.addEventListener("mouseenter", () => {
+    box.style.backgroundColor = "#22d3ee";
+});
+
+box.addEventListener("mouseleave", () => {
+    box.style.backgroundColor = "#1e2937";
+});
+
+// Натиснення клавіші
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        console.log("Enter натиснуто!");
+    }
+    if (event.key === "Escape") {
+        console.log("Escape — вихід");
+    }
+});`,
+        },
+        {
+          title: "Передача даних у обробник + event об’єкт",
+          codeTitle: "event-object.js",
+          code: `btn.addEventListener("click", (event) => {
+    console.log(event);           // весь об'єкт події
+    console.log(event.target);    // елемент, на якому спрацювала подія
+    console.log(event.type);      // "click"
+
+    event.target.style.transform = "scale(0.95)";
+    setTimeout(() => {
+        event.target.style.transform = "scale(1)";
+    }, 150);
+});`,
+        },
+        {
+          title: "Практичний приклад — Лічильник кліків",
+          codeTitle: "click-counter.js",
+          code: `let clickCount = 0;
+
+document.getElementById("clickArea").addEventListener("click", (e) => {
+    clickCount++;
+    document.getElementById("counter").textContent = clickCount;
+
+    // Ефект "ripple"
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+    ripple.style.left = \`\${e.offsetX}px\`;
+    ripple.style.top = \`\${e.offsetY}px\`;
+    e.currentTarget.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+});`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи кнопку, яка при кожному натисканні змінює свій текст і колір.",
+          "Зроби область `div`, яка реагує на `mouseenter`, `mouseleave`, `click` і `dblclick`.",
+          "Додай поле вводу, яке при натисканні `Enter` додає текст у список нижче.",
+          "Додай кнопку `Очистити все`, яка прибирає всі створені елементи або записи.",
+          "Зроби взаємодії акуратними й живими через плавні переходи та стилі.",
+        ],
+        note:
+          "Події — це серце інтерактивного інтерфейсу. Щойно ти їх освоюєш, сторінка перестає бути статичною і починає поводитися як справжній застосунок.",
+      },
+    },
+  },
+  {
+    slug: "click-input-and-form-events",
+    level: "Core",
+    duration: "26 min",
+    title: "Події кліку, введення, відправки форми",
+    description:
+      "Тридцять дев’ятий урок зосереджений на найуживаніших подіях інтерфейсу: кліках, введенні тексту та submit-подіях форм, без яких не обходиться жоден реальний вебзастосунок.",
+    bullets: [
+      "Події `click` і `dblclick`",
+      "Події введення: `input`, `keyup`, `change`",
+      "Подія `submit`, `preventDefault()` і робота з формою",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 39",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися працювати з різними типами подій: кліки, введення тексту та відправка форм.",
+      sections: [
+        {
+          title: "Події кліку (click, dblclick)",
+          codeTitle: "click-events.js",
+          code: `const btn = document.querySelector("#submitBtn");
+
+btn.addEventListener("click", () => {
+    console.log("Кнопку натиснуто!");
+});
+
+btn.addEventListener("dblclick", () => {
+    console.log("Подвійний клік! ⚡");
+});`,
+        },
+        {
+          title: "Події введення (input, keyup, change)",
+          codeTitle: "input-events.js",
+          code: `const input = document.querySelector("#nameInput");
+const output = document.querySelector("#liveOutput");
+
+input.addEventListener("input", () => {
+    output.textContent = \`Привіт, \${input.value || "воїне"}! 🌿\`;
+});
+
+// Відстежуємо саме натискання клавіш
+input.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        alert(\`Введено: \${input.value}\`);
+    }
+});`,
+        },
+        {
+          title: "Подія відправки форми (submit)",
+          codeTitle: "form-submit.js",
+          code: `const form = document.querySelector("#warriorForm");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();        // ← дуже важливо! Зупиняє перезавантаження сторінки
+
+    const name = document.querySelector("#name").value;
+    const age = document.querySelector("#age").value;
+
+    if (name && age) {
+        console.log(\`Новий воїн: \${name}, вік: \${age}\`);
+        alert(\`Слава Роду! Воїн \${name} приєднався до клану! ⚡\`);
+        form.reset(); // очищаємо форму
+    } else {
+        alert("Будь ласка, заповни всі поля");
+    }
+});`,
+        },
+        {
+          title: "Повний приклад форми",
+          codeTitle: "index.html",
+          code: `<form id="warriorForm">
+    <input type="text" id="name" placeholder="Ім'я воїна" required>
+    <input type="number" id="age" placeholder="Вік" required>
+    <button type="submit">Приєднати до клану</button>
+</form>`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи форму з полями: ім’я воїна, вік і вибір рівня через `<select>`.",
+          "Додай кнопку `Приєднатися` і оброби `submit` без перезавантаження сторінки через `event.preventDefault()`.",
+          "При відправці виведи всі дані в консоль і покажи гарне `alert`-повідомлення.",
+          "Додай введене ім’я в список воїнів на сторінці як новий елемент.",
+          "Бонус: зроби валідацію, щоб вік був у межах від `16` до `60`.",
+        ],
+        note:
+          "Події форми — це база для реєстрацій, пошуку, коментарів, фільтрів і майже будь-якої взаємодії з користувачем у реальних проєктах.",
+      },
+    },
+  },
+  {
+    slug: "keyboard-and-mouse-events",
+    level: "Core",
+    duration: "24 min",
+    title: "Події клавіатури та миші",
+    description:
+      "Сороковий урок показує, як реагувати на рухи миші, натискання кнопок і клавіш. Саме ці механіки лежать в основі ігор, гарячих клавіш, drag-and-drop і швидких інтерактивних інтерфейсів.",
+    bullets: [
+      "Події миші: `mousemove`, `mousedown`, `mouseup`, `contextmenu`",
+      "Події клавіатури: `keydown`, `keyup`, модифікатори на кшталт `ctrlKey`",
+      "Практика з керуванням елементом через стрілки і `WASD`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 40",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Навчитися працювати з подіями клавіатури та миші — це відкриває двері до створення ігор, швидких інтерфейсів та зручних інструментів.",
+      sections: [
+        {
+          title: "Події миші",
+          codeTitle: "mouse-events.js",
+          code: `const box = document.querySelector(".interactive-box");
+
+box.addEventListener("mousemove", (e) => {
+    console.log(\`X: \${e.offsetX}, Y: \${e.offsetY}\`);
+});
+
+box.addEventListener("mousedown", () => console.log("Кнопка миші натиснута"));
+box.addEventListener("mouseup", () => console.log("Кнопка миші відпущена"));
+
+box.addEventListener("contextmenu", (e) => {
+    e.preventDefault(); // забороняємо контекстне меню
+    console.log("Правий клік! 🖱️");
+});`,
+        },
+        {
+          title: "Події клавіатури",
+          codeTitle: "keyboard-events.js",
+          code: `document.addEventListener("keydown", (e) => {
+    console.log(\`Натиснута клавіша: \${e.key}\`);
+
+    if (e.key === "Escape") {
+        console.log("Вихід з режиму ⚡");
+    }
+
+    if (e.key === "r" && e.ctrlKey) {
+        console.log("Ctrl + R — оновлення сторінки");
+    }
+});
+
+document.addEventListener("keyup", (e) => {
+    if (e.key === " ") {
+        console.log("Пробіл відпущений");
+    }
+});`,
+        },
+        {
+          title: "Практичний приклад — Керування об’єктом стрілками",
+          codeTitle: "move-player.js",
+          code: `const player = document.querySelector("#player");
+let x = 100, y = 100;
+
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case "ArrowRight":
+        case "d":
+            x += 20;
+            break;
+        case "ArrowLeft":
+        case "a":
+            x -= 20;
+            break;
+        case "ArrowUp":
+        case "w":
+            y -= 20;
+            break;
+        case "ArrowDown":
+        case "s":
+            y += 20;
+            break;
+    }
+
+    player.style.left = \`\${x}px\`;
+    player.style.top = \`\${y}px\`;
+});`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Створи маленьку гру `Воїн у полі` з квадратним воїном на сторінці.",
+          "Додай керування стрілками або клавішами `WASD`.",
+          "При натисканні `Пробілу` воїн має атакувати: коротко збільшуватися і змінювати колір.",
+          "При натисканні `R` воїн повинен повертатися в центр поля.",
+          "Додай виведення координат у кутку екрана і зроби все плавно через `transition`.",
+        ],
+        note:
+          "Після цього уроку ти вже можеш будувати дуже живі механіки: мініігри, гарячі клавіші, кастомні контролери й нестандартні UI-взаємодії.",
+      },
+    },
+  },
+  {
+    slug: "guess-number-game-with-validation",
+    level: "Core",
+    duration: "30 min",
+    title: "Практика — Інтерактивна гра «Вгадай число» з валідацією",
+    description:
+      "Сорок перший урок збирає докупи DOM, події, форми та перевірку введення у повноцінну маленьку гру. Це вже не окремий прийом, а цілісна інтерактивна механіка.",
+    bullets: [
+      "Робота з полями вводу, кнопками і текстовими підказками",
+      "Валідація значення від `1` до `100`",
+      "Перезапуск гри і підготовка до розширення через `localStorage`",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 41",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Закріпити роботу з DOM, подіями, формами та валідацією, створивши повноцінну маленьку гру.",
+      sections: [
+        {
+          title: "Фінальний код гри",
+          codeTitle: "guess-number-game.js",
+          code: `// === Урок 41 — Практика: Гра "Вгадай число" ===
+
+const secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+
+const guessInput = document.getElementById("guess");
+const submitBtn = document.getElementById("submit");
+const messageEl = document.getElementById("message");
+const attemptsEl = document.getElementById("attempts");
+const restartBtn = document.getElementById("restart");
+
+function checkGuess() {
+    const userGuess = Number(guessInput.value);
+    attempts++;
+
+    attemptsEl.textContent = attempts;
+
+    if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+        messageEl.textContent = "❌ Введи число від 1 до 100!";
+        messageEl.style.color = "#f87171";
+        return;
+    }
+
+    if (userGuess === secretNumber) {
+        messageEl.innerHTML = \`🎉 <strong>Вітаємо!</strong> Ти вгадав число \${secretNumber} за \${attempts} спроб!\`;
+        messageEl.style.color = "#4ade80";
+        submitBtn.disabled = true;
+        guessInput.disabled = true;
+    } 
+    else if (userGuess < secretNumber) {
+        messageEl.textContent = "🔥 Замало! Спробуй більше.";
+        messageEl.style.color = "#fb923c";
+    } 
+    else {
+        messageEl.textContent = "❄️ Забагато! Спробуй менше.";
+        messageEl.style.color = "#60a5fa";
+    }
+
+    guessInput.value = "";
+    guessInput.focus();
+}
+
+// Подія на кнопку
+submitBtn.addEventListener("click", checkGuess);
+
+// Подія на Enter
+guessInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        checkGuess();
+    }
+});
+
+// Кнопка "Грати знову"
+restartBtn.addEventListener("click", () => {
+    location.reload();
+});`,
+        },
+        {
+          title: "HTML-структура (приклад)",
+          codeTitle: "index.html",
+          code: `<div class="game-container">
+    <h1>Вгадай число від 1 до 100</h1>
+    <input type="number" id="guess" placeholder="Твоє число..." autofocus>
+    <button id="submit">Перевірити</button>
+    <button id="restart" style="display:none;">Грати знову</button>
+
+    <p id="message"></p>
+    <p>Спроб: <span id="attempts">0</span></p>
+</div>`,
+        },
+      ],
+      homework: {
+        title: "Домашнє завдання",
+        tasks: [
+          "Додай підказки `дуже холодно / холодно / тепло / гаряче` залежно від різниці між числом користувача і загаданим числом.",
+          "Зроби обмеження на `10` спроб, щоб після цього гра завершувалась поразкою.",
+          "Після перемоги або поразки показуй кнопку `Грати знову`.",
+          "Додай таблицю рекордів і зберігай найкращий результат у `localStorage`.",
+          "Оформ гру так, щоб вона виглядала як маленький завершений мініпроєкт, а не просто набір елементів.",
+        ],
+        note:
+          "Це дуже хороша практика перед фінальним проєктом: тут є стан, події, валідація, UX-підказки і логіка гри в одному місці.",
+      },
+    },
+  },
+  {
+    slug: "final-project-todo-app",
+    level: "Core",
+    duration: "45 min",
+    title: "Фінальний проєкт — Todo App з сучасним дизайном",
+    description:
+      "Сорок другий урок завершує основний курс повноцінним проєктом. Тут сходяться DOM, події, масиви, об’єкти, localStorage і базовий UX у вигляді сучасного Todo App.",
+    bullets: [
+      "Форма додавання завдань і динамічний рендер списку",
+      "Збереження стану в `localStorage`",
+      "Статистика виконання і база для подальших покращень",
+    ],
+    content: {
+      video: {
+        title: "Відео до уроку 42",
+        url: "https://www.youtube.com/embed/vOt0DweALXc",
+      },
+      goal:
+        "Зібрати всі знання курсу в один повноцінний проєкт — Todo List з гарним дизайном, збереженням даних і статистикою.",
+      sections: [
+        {
+          title: "Фінальний код (повний Todo App)",
+          codeTitle: "todo-app.js",
+          code: `// === Урок 42 — Фінальний проєкт: Todo App ===
+
+const todoForm = document.getElementById('todo-form');
+const todoInput = document.getElementById('todo-input');
+const todoList = document.getElementById('todo-list');
+const stats = document.getElementById('stats');
+
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+// Збереження в localStorage
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Відображення всіх завдань
+function renderTasks() {
+    todoList.innerHTML = '';
+
+    tasks.forEach((task, index) => {
+        const taskEl = document.createElement('div');
+        taskEl.className = \`task-item \${task.completed ? 'completed' : ''}\`;
+        taskEl.innerHTML = \`
+            <input type="checkbox" \${task.completed ? 'checked' : ''}>
+            <span>\${task.text}</span>
+            <button class="delete-btn">🗑️</button>
+        \`;
+
+        // Відмітка виконання
+        taskEl.querySelector('input').addEventListener('change', () => {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            renderTasks();
+            updateStats();
+        });
+
+        // Видалення
+        taskEl.querySelector('.delete-btn').addEventListener('click', () => {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+            updateStats();
+        });
+
+        todoList.appendChild(taskEl);
+    });
+}
+
+// Оновлення статистики
+function updateStats() {
+    const total = tasks.length;
+    const completed = tasks.filter(t => t.completed).length;
+    stats.textContent = \`\${completed} з \${total} виконано\`;
+}
+
+// Додавання нового завдання
+todoForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (todoInput.value.trim() === '') return;
+
+    tasks.push({
+        text: todoInput.value.trim(),
+        completed: false
+    });
+
+    saveTasks();
+    renderTasks();
+    updateStats();
+    todoInput.value = '';
+});
+
+// Ініціалізація
+renderTasks();
+updateStats();`,
+        },
+        {
+          title: "Що ми використали в цьому проєкті",
+          bullets: [
+            "Робота з DOM",
+            "Події: `submit`, `change`, `click`",
+            "`localStorage` для збереження задач",
+            "Масиви та об’єкти для стану застосунку",
+            "Динамічне створення елементів",
+            "`classList` та стилі для візуального стану",
+          ],
+        },
+      ],
+      homework: {
+        title: "Фінальне домашнє завдання",
+        tasks: [
+          "Додай можливість редагування завдання при подвійному кліку.",
+          "Реалізуй фільтри: `Усі`, `Активні`, `Виконані`.",
+          "Додай кнопку `Очистити виконані`.",
+          "Зроби справді гарний дизайн, можна з Tailwind або власним CSS.",
+          "Додай анімації при додаванні та видаленні завдань.",
+        ],
+        note:
+          "Вітаю! Ти пройшов увесь основний курс JavaScript для початківців 2026. Цей Todo App — вже нормальна база для портфоліо і для переходу до більш серйозних проєктів.",
+      },
+    },
+  },
 ];
 
 export function getLessonBySlug(slug: string) {
