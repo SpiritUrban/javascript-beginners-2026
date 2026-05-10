@@ -2587,7 +2587,7 @@ console.log(getMotivation("high"));`,
     content: {
       video: {
         title: "Відео до уроку 25",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/dfBsZ8W5GDY",
       },
       goal:
         "Навчитися працювати з масивами — одним з найважливіших типів даних у JavaScript. Масиви дозволяють зберігати багато значень в одному місці.",
@@ -2692,7 +2692,7 @@ for (const warrior of clan) {
     content: {
       video: {
         title: "Відео до уроку 26",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/uTkyvVdZhpA",
       },
       goal:
         "Навчитися ефективно додавати, видаляти та змінювати елементи масиву за допомогою вбудованих методів.",
@@ -2799,7 +2799,7 @@ console.log(warriors);`,
     content: {
       video: {
         title: "Відео до уроку 27",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/8zoKu708Xa4",
       },
       goal:
         "Навчитися сучасним і зручним способам роботи з кожним елементом масиву.",
