@@ -2910,7 +2910,7 @@ console.log("Середній бал:", average.toFixed(1));`,
     content: {
       video: {
         title: "Відео до уроку 28",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/BnQ29BELlrE",
       },
       goal:
         "Розібратися з об’єктами — одним з найважливіших типів даних у JavaScript. Об’єкти дозволяють групувати пов’язані дані та функції разом.",
