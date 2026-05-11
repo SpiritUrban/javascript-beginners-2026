@@ -3049,7 +3049,7 @@ console.log(oleg.getInfo());`,
     content: {
       video: {
         title: "Відео до уроку 29",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/Q4Nwz2bsRC0",
       },
       goal:
         "Навчитися сучасному та дуже зручному способу витягування даних з масивів і об’єктів — деструктуризація (Destructuring).",
@@ -3184,7 +3184,7 @@ console.log(\`Інші скіли: \${otherSkills}\`);`,
     content: {
       video: {
         title: "Відео до уроку 30",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/pNbCAZDRbKw",
       },
       goal:
         "Освоїти один з найпотужніших і найзручніших інструментів сучасного JavaScript — оператор `...` (spread та rest).",
@@ -3316,7 +3316,7 @@ function addToClan(clanName, ...warriors) {
     content: {
       video: {
         title: "Відео до уроку 31",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/IXlS484GOmE",
       },
       goal:
         "Навчитися працювати з JSON — найпопулярнішим форматом обміну даними в сучасній веб-розробці.",
