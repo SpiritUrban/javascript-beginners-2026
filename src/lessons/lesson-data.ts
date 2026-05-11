@@ -3437,7 +3437,7 @@ function loadWarrior(jsonString) {
     content: {
       video: {
         title: "Відео до уроку 32",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/tDxxCeWozHc",
       },
       goal:
         "Зібрати всі знання про масиви, об’єкти, функції та деструктуризацію в реальний невеликий проєкт — Todo List.",
@@ -3564,7 +3564,7 @@ todoList.getStats();`,
     content: {
       video: {
         title: "Відео до уроку 33",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/JVxltDHxApM",
       },
       goal:
         "Познайомитися з DOM — це місток між JavaScript і HTML-сторінкою. Саме завдяки DOM ми можемо змінювати сторінку динамічно.",
@@ -3666,7 +3666,7 @@ btn.addEventListener("click", () => {
     content: {
       video: {
         title: "Відео до уроку 34",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/tTtD6p90QO8",
       },
       goal:
         "Навчитися динамічно змінювати вміст, стилі та атрибути елементів на сторінці.",
@@ -3769,7 +3769,7 @@ btnReset.addEventListener("click", () => {
     content: {
       video: {
         title: "Відео до уроку 35",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/rp-tdnVkN7Q",
       },
       goal:
         "Навчитися динамічно створювати, додавати та видаляти HTML-елементи через JavaScript.",
@@ -3862,9 +3862,9 @@ addNewTask("Повторити деструктуризацію");`,
     ],
     content: {
       video: {
-        title: "Відео до уроку 36",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
-      },
+      title: "Відео до уроку 36",
+      url: "https://www.youtube.com/embed/fIEgPvYc-Sg",
+    },
       goal:
         "Навчитися професійно працювати з CSS-класами через JavaScript — це найправильніший і найзручніший спосіб змінювати зовнішній вигляд елементів.",
       sections: [
@@ -3959,9 +3959,9 @@ themeBtn.addEventListener("click", () => {
     ],
     content: {
       video: {
-        title: "Відео до уроку 37",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
-      },
+      title: "Відео до уроку 37",
+      url: "https://www.youtube.com/embed/-2NxHx6hhbE",
+    },
       goal:
         "Закріпити роботу з DOM через створення кількох веселих і корисних інтерактивних елементів.",
       sections: [
