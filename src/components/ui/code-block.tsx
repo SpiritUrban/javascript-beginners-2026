@@ -1,3 +1,5 @@
+import { Check, Copy } from "lucide-react";
+import { useEffect, useState } from "react";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
 import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
@@ -41,15 +43,45 @@ SyntaxHighlighter.registerLanguage("json", json);
 SyntaxHighlighter.registerLanguage("markdown", markdown);
 
 export function CodeBlock({ code, title }: CodeBlockProps) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setCopied(false);
+    }, 1800);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [copied]);
+
+  async function handleCopy() {
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+  }
+
   return (
     <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#0a1120] shadow-glow">
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
         <span className="font-mono text-xs uppercase tracking-[0.22em] text-slate-400">
           {title ?? "code"}
         </span>
-        <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
-          {getLanguage(title)}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+            {getLanguage(title)}
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              void handleCopy();
+            }}
+            className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/15 bg-cyan-400/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan-200 transition hover:border-cyan-300/30 hover:bg-cyan-300/12"
+            aria-label="Копіювати код"
+          >
+            {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+            {copied ? "Скопійовано" : "Копіювати код"}
+          </button>
+        </div>
       </div>
 
       <SyntaxHighlighter

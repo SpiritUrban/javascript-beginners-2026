@@ -4055,9 +4055,9 @@ card.addEventListener("mouseleave", () => {
     ],
     content: {
       video: {
-        title: "Відео до уроку 38",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
-      },
+      title: "Відео до уроку 38",
+      url: "https://www.youtube.com/embed/5heJZdRFiaQ",
+    },
       goal:
         "Навчитися правильно обробляти події користувача: кліки, наведення, введення тексту тощо.",
       sections: [
