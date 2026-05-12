@@ -4168,7 +4168,7 @@ document.getElementById("clickArea").addEventListener("click", (e) => {
     content: {
       video: {
         title: "Відео до уроку 39",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/CkSGGjnfU_A",
       },
       goal:
         "Навчитися працювати з різними типами подій: кліки, введення тексту та відправка форм.",
