@@ -4262,7 +4262,7 @@ form.addEventListener("submit", (event) => {
     content: {
       video: {
         title: "Відео до уроку 40",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/hql0ZAujCwk",
       },
       goal:
         "Навчитися працювати з подіями клавіатури та миші — це відкриває двері до створення ігор, швидких інтерфейсів та зручних інструментів.",
@@ -4365,7 +4365,7 @@ document.addEventListener("keydown", (e) => {
     content: {
       video: {
         title: "Відео до уроку 41",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/KAZ9UdTSmos",
       },
       goal:
         "Закріпити роботу з DOM, подіями, формами та валідацією, створивши повноцінну маленьку гру.",
@@ -4473,7 +4473,7 @@ restartBtn.addEventListener("click", () => {
     content: {
       video: {
         title: "Відео до уроку 42",
-        url: "https://www.youtube.com/embed/vOt0DweALXc",
+        url: "https://www.youtube.com/embed/R3S8an0QPTo",
       },
       goal:
         "Зібрати всі знання курсу в один повноцінний проєкт — Todo List з гарним дизайном, збереженням даних і статистикою.",
