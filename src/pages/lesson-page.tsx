@@ -5,10 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CodeBlock } from "@/components/ui/code-block";
 import { getLessonBySlug } from "@/lessons/lesson-data";
+import { homeworkCodeExamples } from "@/lessons/homework-examples";
 
 export function LessonPage() {
   const { slug = "" } = useParams();
   const lesson = getLessonBySlug(slug);
+  const homeworkExample = lesson ? homeworkCodeExamples[lesson.slug] : undefined;
+  const homeworkCode = lesson?.content?.homework?.code ?? homeworkExample?.code;
+  const homeworkCodeTitle =
+    lesson?.content?.homework?.codeTitle ?? homeworkExample?.codeTitle;
 
   if (!lesson) {
     return (
@@ -245,10 +250,10 @@ export function LessonPage() {
                 </div>
               </div>
 
-              {lesson.content.homework.code ? (
+              {homeworkCode ? (
                 <CodeBlock
-                  code={lesson.content.homework.code}
-                  title={lesson.content.homework.codeTitle ?? "code"}
+                  code={homeworkCode}
+                  title={homeworkCodeTitle ?? "code"}
                 />
               ) : null}
             </div>
