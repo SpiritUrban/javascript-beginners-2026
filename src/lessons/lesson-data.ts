@@ -3320,7 +3320,13 @@ console.log(calculateTotalPower(340, 560, 890, 420));`,
         codeTitle: "spread-rest-homework.js",
         code: `const baseSkills = ["HTML", "CSS", "JavaScript"];
 
-const fullStack = [...baseSkills, "React", "Node.js", "PostgreSQL", "Docker"];
+const fullStack = [
+    ...baseSkills,
+    "React",
+    "Node.js",
+    "PostgreSQL",
+    "Docker"
+];
 
 const warriorProfile = {
     name: "Ярослав",
@@ -3329,7 +3335,10 @@ const warriorProfile = {
 };
 
 function addToClan(clanName, ...warriors) {
-    console.log(\`До клану \${clanName} приєднались: \${warriors.join(", ")}\`);
+    const warriorNames = warriors.join(", ");
+    const message = \`До клану \${clanName} приєднались: \${warriorNames}\`;
+
+    console.log(message);
 }`,
         note:
           "Сильна робота! ⚡🌳 Оператор `...` — це той інструмент, без якого сучасний JavaScript уже важко уявити.",

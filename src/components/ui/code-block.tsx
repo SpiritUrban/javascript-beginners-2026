@@ -88,17 +88,19 @@ export function CodeBlock({ code, title }: CodeBlockProps) {
         language={getLanguage(title)}
         style={oneDark}
         showLineNumbers
-        wrapLongLines
+        wrapLongLines={false}
         customStyle={{
           margin: 0,
           padding: "1.25rem",
           background: "transparent",
           fontSize: "0.92rem",
           lineHeight: "1.75",
+          overflowX: "auto",
         }}
         codeTagProps={{
           style: {
             fontFamily: '"JetBrains Mono", monospace',
+            whiteSpace: "pre",
           },
         }}
         lineNumberStyle={{
