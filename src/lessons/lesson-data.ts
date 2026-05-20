@@ -1419,6 +1419,41 @@ else {
           "Залежно від відповідей виведи одне з повідомлень: `Ти — майбутній легендарний розробник!`, `Добрий початок, Сварог тебе веде!`, `Потрібно більше практики, воїне...`.",
           "Зроби 3–4 різні рівні і виведи результат через `alert()` та `console.log()`.",
         ],
+        codeTitle: "homework-if-else.js",
+        code: `// Можливий варіант домашнього завдання
+
+const age = Number(prompt("Скільки тобі років?"));
+const experienceAnswer = prompt(
+    "Маєш досвід? так / ні"
+);
+const hoursAnswer = prompt(
+    "Скільки годин готовий вчитися?"
+);
+
+const hasExperience = experienceAnswer === "так";
+const studyHours = Number(hoursAnswer);
+
+let result = "";
+
+if (age >= 16 && hasExperience && studyHours >= 3) {
+    result = "Ти — майбутній легендарний розробник!";
+}
+else if (age >= 14 && studyHours >= 2) {
+    result = "Добрий початок, Сварог тебе веде!";
+}
+else if (studyHours >= 1) {
+    result = "Початок є, але потрібно більше практики, воїне...";
+}
+else {
+    result = "Потрібно більше практики, воїне...";
+}
+
+alert(result);
+
+console.log("Вік:", age);
+console.log("Досвід програмування:", experienceAnswer);
+console.log("Годин навчання на день:", studyHours);
+console.log("Результат:", result);`,
         note:
           "Слава Роду! ⚡🌳 Тепер твій код вміє приймати рішення.",
       },
